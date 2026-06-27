@@ -1,0 +1,39 @@
+.claude-plugin/marketplace.json
+  s_f7cf46c8a5a203::t_ac9a6742c542b4 1-15
+.claude-plugin/plugin.json
+  s_f7cf46c8a5a203::t_68560b4317b954 1-7
+.gitignore
+  s_f7cf46c8a5a203::t_7dc6312e3e56ab 1-2
+references/conventions.md
+  s_f7cf46c8a5a203::t_a7b923f99fcbdc 1-94
+skills/dte-arc-auditor/SKILL.md
+  s_f7cf46c8a5a203::t_7c4c94db9dedf5 1-62
+skills/dte-arc-plan/SKILL.md
+  s_f7cf46c8a5a203::t_4a691d8215d4d2 1-45
+skills/dte-arc-review/SKILL.md
+  s_f7cf46c8a5a203::t_d989e09a40de50 1-44
+skills/dte-arc-work/SKILL.md
+  s_f7cf46c8a5a203::t_1a6ed68fe11aba 1-52
+skills/dte-deep-reviewer/SKILL.md
+  s_f7cf46c8a5a203::t_1956d0f511f370 1-39
+skills/dte-test-auditor/SKILL.md
+  s_f7cf46c8a5a203::t_38ff650533de25 1-42
+skills/dte-tooling-scan/SKILL.md
+  s_f7cf46c8a5a203::t_8d9fbacac3fbdd 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "9f919ffd4c6ea00bd36af97d80fd2d2c9e81dc27",
+  "prompts": {},
+  "sessions": {
+    "s_f7cf46c8a5a203": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3e0172f7-4e77-4e9a-a315-062034a03a9f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
