@@ -116,6 +116,12 @@ Read [`references/conventions.md`](references/conventions.md) — the shared rul
 (plan-then-validate, decomposition, verify-claims, runnable-gate, report-every-phase, surface-forks-early,
 honor the project's own `CLAUDE.md`).
 
+## Project status & contributing
+
+Shipped state + roadmap: **[STATUS.md](STATUS.md)**. Building or editing a skill? Read
+**[AGENTS.md](AGENTS.md)** first — it carries the design rules and the hard-won lessons that keep the
+skills solid (why dark loops, self-critique, and unverified claims are banned).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
