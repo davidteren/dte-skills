@@ -1,0 +1,15 @@
+{
+  "name": "dte-skills-marketplace",
+  "metadata": {
+    "version": "1.2.0",
+    "description": "dte-skills — orchestration skills for Rails engineering (review / plan / work / audit), composing the existing toolchain."
+  },
+  "owner": { "name": "David Teren" },
+  "plugins": [
+    {
+      "name": "dte-skills",
+      "source": "./",
+      "description": "dte-* orchestration skills: architectural review, planning, deep review, test audit, full review-plan-work-review cycle, and tooling scan."
+    }
+  ]
+}
