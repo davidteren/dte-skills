@@ -1,0 +1,32 @@
+skills/dte-pwa/SKILL.md
+  s_5f2c0b20dd2195::t_28234e0ad4a226 41-52
+  s_5f2c0b20dd2195::t_49001f7224302a 65-66
+  s_5f2c0b20dd2195::t_3f21bf181315b6 3
+.claude-plugin/plugin.json
+  s_5f2c0b20dd2195::t_b7c325b4298346 3
+STATUS.md
+  s_5f2c0b20dd2195::t_8386daf13cfa38 69-74
+  s_5f2c0b20dd2195::t_22b84ad519a5eb 9
+docs/index.html
+  s_5f2c0b20dd2195::t_03e40d498981a3 402-403
+  s_5f2c0b20dd2195::t_c32b9be1b95dc4 406
+  s_5f2c0b20dd2195::t_f581331a70133a 566
+.claude-plugin/marketplace.json
+  s_5f2c0b20dd2195::t_e0dbb37c913061 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "ead0e4277f93d3bd86f811773f007a8a5ef1895d",
+  "prompts": {},
+  "sessions": {
+    "s_5f2c0b20dd2195": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8ddb3555-0c10-40f7-93bc-ed3970461a05",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
