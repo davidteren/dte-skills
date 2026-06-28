@@ -72,6 +72,12 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
   score" anymore → **v1.4.6** rewrote `dte-pwa` step 5/6 to verify via the **Chrome DevTools Application
   panel** (Manifest + Service Workers installability verdict) + best-practices/accessibility Lighthouse +
   manual HTTP fallback, and dropped the dead "Lighthouse PWA pass" claim (also fixed on the site).
+  **Live verdict captured 2026-06-28:** booted `miela_app` (:3007), drove real Chrome — **`beforeinstallprompt`
+  FIRED** (Chrome's authoritative "installable" signal), SW `activated` + controlling, manifest valid
+  (standalone, 3 icons incl. maskable), all HTTP inputs 200. **Lighthouse mobile: Accessibility/Best-Practices/
+  SEO/Agentic = 100 (47 passed, 0 failed).** Fully installable **without** offline caching — confirming the
+  v1.4.3 honor-installable-only design. Verified per the v1.4.6 method (beforeinstallprompt + App-panel, not
+  the removed PWA score). Server stopped + chrome profile freed after.
 - ✅ **`dte-skill-audit` first run** — done 2026-06-28 (`docs/reviews/skill-audit-2026-06-28.md`): suite
   9/10 → **10/10** after v1.4.1 applied the 1 🟠 + 3 🟡 wording/boundary fixes.
 - ✅ **Auto-pull the FE lens** — **partially confirmed by dogfood** (2026-06-28): ran `dte-deep-reviewer`
