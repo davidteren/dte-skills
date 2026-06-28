@@ -22,6 +22,9 @@ Read `../../references/conventions.md` first. Output is a findings doc; it does 
    - `/ie-review` — predictability, convention, simplicity, experience, architecture lenses.
    - majestic `review:rails-code-review` — Rails-specific orchestrated review.
    - cubic `/run-review` + `/scan` (if available) — team-learned patterns + security scan.
+   - **Front-end lens (conditional).** If the diff touches FE files (`.erb`/`.haml`/`.slim`, ViewComponent,
+     JS/TS, Stimulus, CSS/Tailwind — see conventions "Front-end lens"), add **`ie-experience-reviewer`** +
+     **frontend-design**/ui.sh (interaction states, a11y, keyboard/focus, look-and-feel). No FE files → say so, skip.
 3. **Adversarial cross-check.** Compare the lenses: where two or more agree → **confirmed**; where they
    disagree on severity or existence → **disputed** (surface both, don't merge or average).
 4. **Synthesize.** Dedupe, severity-rank (🔴/🟠/🟡), each finding with `file:line` + why + concrete fix.

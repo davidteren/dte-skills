@@ -26,6 +26,10 @@ not fix anything (hand off to `dte-arc-plan` / `dte-arc-work`).
      (fat models/controllers, god objects, callback-heavy operations, layer leaks).
    - `/ie-audit` scoped to the target → architecture, convention, simplicity, predictability lenses.
    - majestic `pragmatic-rails-reviewer` + `data-integrity-reviewer` for Rails-specific structural smells.
+   - **Front-end lens (conditional).** If the slice includes FE files (views, ViewComponent, JS/Stimulus,
+     CSS/Tailwind — see conventions "Front-end lens"), add **`ie-experience-reviewer`** + **frontend-design**/
+     ui.sh (component structure, interaction states, a11y, look-and-feel), or hand the slice to **`dte-ux`**.
+     No FE files → state "no front-end changes detected", skip.
 3. **Ponytail pass.** Run `ponytail`/`ie-simplicity-reviewer` over the findings: which "problems" are
    actually fine, and which proposed structure is over-engineering? Mark over-builds explicitly.
 4. **Synthesize.** Dedupe across lenses, severity-rank (🔴/🟠/🟡), and apply owned-convention:

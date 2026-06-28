@@ -119,6 +119,24 @@ Needs a runnable repro before and after. No AppSignal → logs/local repro for p
 | `dte-arc-plan`/`ce-plan` + `ce-work` | majestic `gemfile-upgrade`, `gemfile-organize`, `database-admin`, `database-optimizer`, `gem-research` | `dte-loop` (run the stepwise plan autonomously) |
 Every step reversible + gate-green (incl. migrate↔rollback round-trip). No data migration without a tested rollback.
 
+### `/dte-pm` — goal → tracked, sequenced issues
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| `gh` CLI (GitHub issues) **or** the project's `dt-create-issue` | compound-engineering (`ce-plan`/`ce-brainstorm` to decompose) | Augment/cubic (existing-feature context) |
+No `gh` → writes a markdown backlog index, notes tickets weren't filed. Honors the project's What/Why/How + label taxonomy.
+
+### `/dte-pwa` — installable / offline Rails app
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| **Rails 8** (native PWA scaffolding) | the ui.sh family + frontend-design (install/offline UI), ie-experience-reviewer | chrome-devtools (`lighthouse_audit`), Augment |
+Pre-Rails-8 → manifest + SW added by hand from the Rails 8 template. No browser → manual PWA checklist, score unmeasured.
+
+### `/dte-skill-audit` — audit the dte-* suite
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| this repo's `AGENTS.md` + `references/conventions.md` (the rubric) + `claude plugin validate` | — | — |
+Self-contained + read-only — reads the skills, AGENTS.md, and DEPENDENCIES.md; needs no external plugin.
+
 ## Minimum vs full
 
 - **Minimum useful set:** compound-engineering + intent-engineering (+ layered-rails for the Rails

@@ -49,6 +49,9 @@ that by making the discipline first-class:
 | **`/dte-security-sweep`** | security posture / PR review | traced, severity-ranked vulns + scanner results |
 | **`/dte-debug`** | track a bug to root cause, fix once | runnable repro (before/after) + shared-path fix + regression test |
 | **`/dte-migrate`** | safe upgrade or schema/data migration | small reversible gated steps + rollback path |
+| **`/dte-pm`** | turn a goal into tracked, sequenced work | GitHub issues (What/Why/How) + a tracking index |
+| **`/dte-pwa`** | make a Rails app installable/offline | Rails 8 native PWA wired + install/offline UI + Lighthouse pass |
+| **`/dte-skill-audit`** | audit the `dte-*` suite itself | scored quality-bar report + trigger-overlap matrix |
 
 ### How they fit together
 

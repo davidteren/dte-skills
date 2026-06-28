@@ -10,28 +10,26 @@ says what's missing, whether an existing skill/tool already covers it, and the d
 
 ## Open gaps
 
-### PWA (Progressive Web App) for Rails — ◐ logged, build later
+### PWA (Progressive Web App) for Rails — ✅ built v1.4.0 (`dte-pwa`), runtime dogfood pending
 **Gap:** no skill for making a Rails app installable/offline-capable (manifest, service worker, install
 prompt, offline cache, push). **What exists:** **Rails 8 ships native PWA** — `app/views/pwa/manifest.json.erb`
 + `service-worker.js`, routes commented in `config/routes.rb`. The **ui.sh** family + **frontend-design**
 cover the UI; **ie-experience-reviewer** the UX. No skill stitches these into a PWA recipe.
-**Decision:** **log now, build `dte-pwa` later.** When built it should *compose* Rails 8 native PWA (don't
-hand-roll a service worker), the ui.sh skills (install UI / offline states), frontend-design, and
-ie-experience-reviewer — plus a Lighthouse PWA audit via chrome-devtools `lighthouse_audit`. Sharp trigger:
-"make this a PWA / installable / work offline / add a service worker / web app manifest". Not for general
-front-end work (use dte-ux).
+**Decision:** **built as `dte-pwa` in v1.4.0** — composes Rails 8 native PWA (manifest + service worker,
+not hand-rolled), the ui.sh skills (install UI / offline states), frontend-design, ie-experience-reviewer,
+and a Lighthouse PWA audit. **Open follow-up:** authored + validated only — not yet run against a real
+Rails 8 app (none in this repo); dogfood the live Lighthouse pass later. See STATUS "Open follow-ups".
 
-### Front-end lens in reviews — ☐ todo (carried from STATUS backlog)
-`dte-deep-reviewer` + `dte-arc-review` detect back-end/architecture smells but **not front-end changes**.
-**Decision:** extend both to detect FE diffs (erb/haml/slim, JS/TS, Stimulus, ViewComponent, CSS/Tailwind)
-and pull in **ui.sh** + **frontend-design** + **ie-experience-reviewer**. Add the rule to
-`references/conventions.md` once, reference from both skills. (Now partly covered by `dte-ux`, but reviews
-should auto-pull the FE lens, not require invoking dte-ux by hand.)
+### Front-end lens in reviews — ✅ done v1.4.0
+**Decision:** rule added **once** to `references/conventions.md` ("Front-end lens"); a conditional FE-detect
+step added to `dte-deep-reviewer` + `dte-arc-review` that pulls **ui.sh** + **frontend-design** +
+**ie-experience-reviewer** when the diff touches erb/haml/slim, JS/TS, Stimulus, ViewComponent, CSS/Tailwind.
+**Open follow-up:** confirm it actually triggers on a real FE diff in practice.
 
-### skill-audit — ☐ later (carried from STATUS backlog)
-No mechanical way to audit the `dte-*` skills themselves (compose-not-reinvent, loop, degrade, sharp
-non-overlapping triggers, gate+report). **Decision:** build `skill-audit` later; until then audit by hand
-against the AGENTS.md "Quality bar".
+### skill-audit — ✅ built v1.4.0 (`dte-skill-audit`), first run pending
+**Decision:** built as **`dte-skill-audit`** (kept the `dte-` prefix) — read-only, scores each skill on the
+7 quality-bar dimensions + a cross-skill trigger-overlap matrix → a report. **Open follow-up:** run it to
+get the baseline health score across all 18 skills.
 
 ### dte-pm (project management) — ☐ todo (carried from STATUS backlog)
 Idea/goal → tracked, broken-down work (issues), status, sequencing. Composes `dt-create-issue` / GitHub

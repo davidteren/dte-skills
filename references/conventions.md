@@ -37,6 +37,17 @@ Every skill accepts a **single target** or a **list**. For a list:
   `minitest-coder`, baseline `ce-dhh` testing) and two `layered-rails`. Pick **one** per job by this
   precedence: project-local skill > `rails-testing`/`layered-rails` (palkan) > majestic. Say which you used.
 
+## Front-end lens (reviews must not be back-end-only)
+A review that only runs back-end/architecture lenses misses half of a front-end change. **Any review skill
+must detect front-end diffs and pull the front-end lens in:**
+- **Detect FE files** in the target/diff: `.erb`/`.haml`/`.slim` views, `app/components` (ViewComponent),
+  JS/TS, Stimulus controllers, `*.css`/Tailwind, `app/javascript`, asset config.
+- **When present, pull in:** the **ui.sh** skills + **frontend-design** (look-and-feel, intentional vs
+  templated) + **`ie-experience-reviewer`** (interaction states loading/empty/error/disabled, keyboard/
+  focus/back-button, accessibility, information architecture). For a heavier pass hand the slice to **`dte-ux`**.
+- **Report FE findings in the same doc**, severity-ranked alongside the back-end ones — don't silently drop them.
+- No FE files in scope → state "no front-end changes detected" and skip (don't fabricate FE findings).
+
 ## Output shape (findings + plans)
 Findings → `docs/reviews/<skill>-<target>-<YYYY-MM-DD>.md`. Plans → `docs/plans/` (ce-plan owns the name).
 Findings docs open with:
