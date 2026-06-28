@@ -16,7 +16,8 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 | layered-rails | [palkan/skills](https://github.com/palkan/skills) | `/layered-rails`, `analyze-callbacks/gods/services`, `layered-rails-planner/reviewer` |
 | majestic-rails | majestic-marketplace | `pragmatic-rails-reviewer`, `data-integrity-reviewer`, `review:rails-code-review`, `minitest-coder`, … |
 | rails-testing | visuality `rails-testing-v8` | idiomatic Rails 8 + Minitest + fixtures guidance |
-| hotwire-rails-toolkit | [davidteren/hotwire-rails-toolkit](https://github.com/davidteren/hotwire-rails-toolkit) | runnable Hotwire/Stimulus/Turbo **checkers** (CI-friendly bash): `lint_stimulus`, `lint_turbo_streams`, `lint_morphing`, `audit_token_auth`, `upgrade_audit` + LazyRouteSet flake detector, `lint_bridge_contract`/`lint_path_config` — deterministic linters that flag failures-with-no-error |
+| hotwire-rails-toolkit | [davidteren/hotwire-rails-toolkit](https://github.com/davidteren/hotwire-rails-toolkit) | runnable Hotwire/Stimulus/Turbo **checkers** (CI-friendly bash): `lint_stimulus`, `lint_turbo_streams`, `lint_morphing`, `lint_turbo_frames`, `audit_token_auth`, `upgrade_audit` + LazyRouteSet flake detector, `lint_bridge_contract`/`lint_path_config` — deterministic linters that flag failures-with-no-error |
+| dte-rails-toolkit | [davidteren/dte-rails-toolkit](https://github.com/davidteren/dte-rails-toolkit) | general-purpose runnable Rails **checkers**: `layer-boundary-lint` (layering violations), `rails-test-smell-checker` (Minitest+RSpec test smells) — the deterministic pre-pass for `dte-arc-review` / `dte-test-auditor` |
 | ponytail | ponytail | the lazy-senior elegance / over-engineering pass |
 | cubic | cubic | `/run-review`, `/scan`, `codebase-context`, `wiki` |
 | Augment | auggie MCP | semantic `codebase-retrieval` |
@@ -39,8 +40,8 @@ a *validated* roadmap — its whole point.
 Needs at least one architecture lens. With both layered-rails and ie-audit it cross-checks. When
 **layer-boundary-lint** is present, run it FIRST as a no-LLM grep gate (Current-in-models, request/params
 in the domain incl. interactors, raw queries in controllers/views, I/O in `after_*` callbacks) → `file:line`
-facts that ground the lenses. (Incubating in `Rails_Skills_Analysis/adoption/skills/`; not yet a published
-plugin — path-referenced, skipped-with-a-note when absent.)
+facts that ground the lenses. Published in **dte-rails-toolkit** (`claude plugin install
+dte-rails-toolkit@dte-rails-toolkit-marketplace`); skipped-with-a-note when absent.
 
 ### `/dte-deep-reviewer` — PR / branch / diff review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
@@ -56,8 +57,9 @@ Stimulus/Turbo/Hotwire Native, run the **hotwire-rails-toolkit** checkers first 
 | a test framework + SimpleCov (coverage) | compound-engineering (testing persona), rails-testing, majestic `minitest-coder` | a mutation tester (`mutant` or **brutus**), **rails-test-smell-checker** (deterministic smell pre-pass) |
 When **rails-test-smell-checker** is present, run it FIRST — a no-LLM static pass (Minitest AND RSpec)
 flagging high-confidence smells (`sleep` in system tests, missing `disable_net_connect!`, stubbing the SUT,
-`has_css?` inside an assertion) with `file:line`; the quality lens then reads deeper. (Incubating in
-`Rails_Skills_Analysis/adoption/skills/`; not yet a published plugin — skipped-with-a-note when absent.)
+`has_css?` inside an assertion) with `file:line`; the quality lens then reads deeper. Published in
+**dte-rails-toolkit** (`claude plugin install dte-rails-toolkit@dte-rails-toolkit-marketplace`);
+skipped-with-a-note when absent.
 Coverage + quality run without mutation; the "does a test catch a bug" signal needs a mutation tester
 (flagged as not-run when absent).
 
