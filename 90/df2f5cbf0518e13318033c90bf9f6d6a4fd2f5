@@ -1,0 +1,19 @@
+docs/index.html
+  s_be4564f736f0f2::t_96629b6ef3eee0 22,33,41,45-46,49-50,52,60,66,73-77,79,84-85,95-112,114-153,164,180,187-191,194-195,199,201,203,205,214,218-236,238-239,242,255,260-263,265-432
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "90df2f5cbf0518e13318033c90bf9f6d6a4fd2f5",
+  "prompts": {},
+  "sessions": {
+    "s_be4564f736f0f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08b6680b-b92d-4a12-9966-443986abd36f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
