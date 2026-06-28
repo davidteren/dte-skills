@@ -11,34 +11,37 @@
 <style>
   :root{
     --font-body:'Plus Jakarta Sans',system-ui,sans-serif; --font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;
-    --bg:#f8fafc; --surface:#fff; --surface2:#f1f5f9; --border:rgba(0,0,0,.07); --border-bright:rgba(0,0,0,.12);
-    --text:#0f172a; --text-dim:#475569; --text-muted:#94a3b8;
-    --accent:#2563eb; --accent-dim:rgba(37,99,235,.08);
-    --violet:#7c3aed; --violet-dim:rgba(124,58,237,.08);
-    --emerald:#059669; --emerald-dim:rgba(5,150,105,.08);
-    --amber:#d97706; --amber-dim:rgba(217,119,6,.08);
-    --cyan:#0891b2; --cyan-dim:rgba(8,145,178,.08);
-    --rose:#e11d48; --rose-dim:rgba(225,29,72,.08);
-    --shadow-sm:0 1px 3px rgba(0,0,0,.05); --shadow-md:0 6px 24px rgba(0,0,0,.08); --shadow-lg:0 24px 60px rgba(0,0,0,.18);
+    --bg:#fafafa; --surface:#fff; --surface2:#f4f4f5; --border:rgba(9,9,11,.09); --border-bright:rgba(9,9,11,.16);
+    --ring:0 0 0 0 transparent;
+    --text:#18181b; --text-dim:#52525b; --text-muted:#71717a;
+    --accent:#2563eb; --accent-dim:rgba(37,99,235,.09);
+    --violet:#7c3aed; --violet-dim:rgba(124,58,237,.09);
+    --emerald:#059669; --emerald-dim:rgba(5,150,105,.09);
+    --amber:#b45309; --amber-dim:rgba(180,83,9,.09);
+    --cyan:#0e7490; --cyan-dim:rgba(14,116,144,.09);
+    --rose:#e11d48; --rose-dim:rgba(225,29,72,.09);
+    --shadow-sm:0 1px 2px rgba(9,9,11,.06); --shadow-md:0 8px 28px rgba(9,9,11,.10); --shadow-lg:0 24px 60px rgba(9,9,11,.18);
   }
   [data-theme="dark"]{
-    --bg:#0b1120; --surface:#131c2e; --surface2:#1e293b; --border:rgba(255,255,255,.07); --border-bright:rgba(255,255,255,.14);
-    --text:#f1f5f9; --text-dim:#94a3b8; --text-muted:#64748b;
-    --accent:#3b82f6; --accent-dim:rgba(59,130,246,.13);
-    --violet:#a78bfa; --violet-dim:rgba(167,139,250,.13);
-    --emerald:#34d399; --emerald-dim:rgba(52,211,153,.13);
-    --amber:#fbbf24; --amber-dim:rgba(251,191,36,.13);
-    --cyan:#22d3ee; --cyan-dim:rgba(34,211,238,.13);
-    --rose:#fb7185; --rose-dim:rgba(251,113,133,.13);
-    --shadow-sm:0 1px 3px rgba(0,0,0,.3); --shadow-md:0 6px 24px rgba(0,0,0,.4); --shadow-lg:0 24px 60px rgba(0,0,0,.6);
+    --bg:#0a0a0c; --surface:#151518; --surface2:#1f1f24; --border:rgba(255,255,255,.08); --border-bright:rgba(255,255,255,.18);
+    --ring:inset 0 0 0 1px rgba(255,255,255,.05);
+    --text:#fafafa; --text-dim:#a1a1aa; --text-muted:#8a8a93;
+    --accent:#60a5fa; --accent-dim:rgba(96,165,250,.14);
+    --violet:#c4b5fd; --violet-dim:rgba(196,181,253,.14);
+    --emerald:#34d399; --emerald-dim:rgba(52,211,153,.14);
+    --amber:#fbbf24; --amber-dim:rgba(251,191,36,.14);
+    --cyan:#22d3ee; --cyan-dim:rgba(34,211,238,.14);
+    --rose:#fb7185; --rose-dim:rgba(251,113,133,.14);
+    --shadow-sm:none; --shadow-md:none; --shadow-lg:0 24px 70px rgba(0,0,0,.7);
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --bg:#0b1120; --surface:#131c2e; --surface2:#1e293b; --border:rgba(255,255,255,.07); --border-bright:rgba(255,255,255,.14);
-    --text:#f1f5f9; --text-dim:#94a3b8; --text-muted:#64748b;
-    --accent:#3b82f6; --accent-dim:rgba(59,130,246,.13); --violet:#a78bfa; --violet-dim:rgba(167,139,250,.13);
-    --emerald:#34d399; --emerald-dim:rgba(52,211,153,.13); --amber:#fbbf24; --amber-dim:rgba(251,191,36,.13);
-    --cyan:#22d3ee; --cyan-dim:rgba(34,211,238,.13); --rose:#fb7185; --rose-dim:rgba(251,113,133,.13);
-    --shadow-sm:0 1px 3px rgba(0,0,0,.3); --shadow-md:0 6px 24px rgba(0,0,0,.4); --shadow-lg:0 24px 60px rgba(0,0,0,.6);
+    --bg:#0a0a0c; --surface:#151518; --surface2:#1f1f24; --border:rgba(255,255,255,.08); --border-bright:rgba(255,255,255,.18);
+    --ring:inset 0 0 0 1px rgba(255,255,255,.05);
+    --text:#fafafa; --text-dim:#a1a1aa; --text-muted:#8a8a93;
+    --accent:#60a5fa; --accent-dim:rgba(96,165,250,.14); --violet:#c4b5fd; --violet-dim:rgba(196,181,253,.14);
+    --emerald:#34d399; --emerald-dim:rgba(52,211,153,.14); --amber:#fbbf24; --amber-dim:rgba(251,191,36,.14);
+    --cyan:#22d3ee; --cyan-dim:rgba(34,211,238,.14); --rose:#fb7185; --rose-dim:rgba(251,113,133,.14);
+    --shadow-sm:none; --shadow-md:none; --shadow-lg:0 24px 70px rgba(0,0,0,.7);
   }}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);background-image:radial-gradient(ellipse at 12% 0%,var(--violet-dim) 0%,transparent 45%),radial-gradient(ellipse at 90% 100%,var(--accent-dim) 0%,transparent 45%);color:var(--text);font-family:var(--font-body);line-height:1.6;min-height:100vh}
@@ -66,6 +69,8 @@
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:11px 20px;border-radius:11px;text-decoration:none;transition:transform .15s;cursor:pointer;border:none}
   .btn:hover{transform:translateY(-2px)}
   .btn-primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-md)}
+  [data-theme="dark"] .btn-primary{color:#0a0a0c}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{color:#0a0a0c}}
   .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
   .install{font-family:var(--font-mono);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:28px auto 0;max-width:560px;text-align:left;box-shadow:var(--shadow-sm)}
   .install .c{color:var(--emerald)}.install .d{color:var(--text-muted)}
@@ -78,22 +83,33 @@
   h2{font-size:13px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:8px}
   .lead{font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:28px;max-width:760px}
 
-  /* flow */
-  .flow{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow-sm)}
-  .flow-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
-  .node{flex:1;min-width:150px;border-radius:13px;padding:16px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:transform .15s,border-color .15s}
+  /* flow recipes */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .tab{font-family:var(--font-mono);font-size:13px;font-weight:600;padding:9px 16px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;box-shadow:var(--ring);transition:color .12s,border-color .12s,background .12s}
+  .tab:hover{color:var(--text);border-color:var(--border-bright)}
+  .tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:transparent}
+  [data-theme="dark"] .tab[aria-selected="true"]{color:#0a0a0c}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#0a0a0c}}
+  .flow{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow-sm),var(--ring)}
+  .flow-desc{font-size:14.5px;color:var(--text-dim);margin-bottom:22px;max-width:680px}
+  .flow-desc b{color:var(--text)}
+  .flow-row{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
+  .node{flex:1;min-width:150px;border-radius:13px;padding:15px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:transform .15s,border-color .15s;display:flex;flex-direction:column;justify-content:center}
   .node:hover{transform:translateY(-3px);border-color:var(--border-bright)}
-  .node .k{font-family:var(--font-mono);font-size:12.5px;font-weight:700}
+  .node .k{font-family:var(--font-mono);font-size:12.5px;font-weight:700;color:var(--text)}
   .node .s{font-size:12px;color:var(--text-dim);margin-top:3px}
-  .node.audit{border-left:3px solid var(--violet)} .node.plan{border-left:3px solid var(--accent)}
-  .node.work{border-left:3px solid var(--emerald)} .node.verify{border-left:3px solid var(--cyan)}
-  .arrow{font-size:22px;color:var(--text-muted);font-weight:700;flex:0 0 auto}
-  .feeders{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
-  .feeder{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);background:var(--surface2);border:1px dashed var(--border-bright);border-radius:9px;padding:7px 12px}
-  .flow-cap{text-align:center;color:var(--text-muted);font-size:12.5px;margin-top:18px}
+  .node.n-review{border-left:3px solid var(--cyan)} .node.n-plan{border-left:3px solid var(--accent)}
+  .node.n-build{border-left:3px solid var(--emerald)} .node.n-design{border-left:3px solid var(--violet)}
+  .node.n-orchestrate{border-left:3px solid var(--amber)}
+  .arrow{font-size:20px;color:var(--text-muted);font-weight:700;flex:0 0 auto;align-self:center}
+  .flow-foot{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap}
+  .flow-foot .g{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px}
+  .flow-foot .g b{color:var(--emerald)}
+  .flow-foot .sep{color:var(--text-muted)}
 
   /* catalog controls */
-  .controls{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:14px 0;margin:0 -24px;border-bottom:1px solid var(--border)}
+  .controls{position:sticky;top:0;z-index:40;background:var(--bg);padding:14px 0 14px;margin:0 -24px;border-bottom:1px solid var(--border)}
+  .controls::before{content:"";position:absolute;inset:-40px 0 auto 0;height:40px;background:var(--bg)}
   .controls-inner{padding:0 24px;display:flex;flex-direction:column;gap:12px}
   .search{position:relative}
   .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--text-muted);pointer-events:none}
@@ -112,8 +128,8 @@
 
   /* skills grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:22px}
-  .card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;box-shadow:var(--shadow-sm);border-top:3px solid var(--accent);cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;text-align:left;display:flex;flex-direction:column;gap:8px}
-  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+  .card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;box-shadow:var(--shadow-sm),var(--ring);border-top:3px solid var(--accent);cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;text-align:left;display:flex;flex-direction:column;gap:8px;color:var(--text)}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md),var(--ring);border-color:var(--border-bright)}
   .card.cat-review{border-top-color:var(--cyan)} .card.cat-plan{border-top-color:var(--accent)}
   .card.cat-build{border-top-color:var(--emerald)} .card.cat-design{border-top-color:var(--violet)}
   .card.cat-orchestrate{border-top-color:var(--amber)}
@@ -132,7 +148,7 @@
   /* detail modal */
   .overlay{position:fixed;inset:0;z-index:70;background:rgba(2,6,23,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
   .overlay.open{display:flex;animation:fadeUp .2s ease-out}
-  .modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;max-width:680px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;max-width:680px;width:100%;box-shadow:var(--shadow-lg),var(--ring);overflow:hidden}
   .modal-hd{padding:24px 26px 18px;border-bottom:1px solid var(--border);position:relative}
   .modal-hd .pill{position:static}
   .modal-hd h3{font-family:var(--font-mono);font-size:22px;font-weight:700;letter-spacing:-.5px;margin:10px 0 6px}
@@ -154,9 +170,9 @@
 
   /* principles */
   .princ{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-  .pr{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .pr{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:16px 18px;box-shadow:var(--shadow-sm),var(--ring)}
   .pr .n{font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:700}
-  .pr h4{font-size:14.5px;font-weight:700;margin:4px 0 4px}
+  .pr h3{font-size:14.5px;font-weight:700;margin:4px 0 4px}
   .pr p{font-size:12.5px;color:var(--text-dim)}
 
   .footer{text-align:center;color:var(--text-muted);font-size:12px;font-family:var(--font-mono);padding:50px 0 40px;border-top:1px solid var(--border);margin-top:30px}
@@ -191,27 +207,20 @@
     </div>
   </header>
 
+  <main>
   <section class="anim" style="--i:6">
-    <h2>The core arc</h2>
-    <div class="lead">It conducts your good tools through one disciplined arc — and never runs dark.</div>
+    <h2>The flows</h2>
+    <div class="lead">Same discipline, different jobs — pick a flow and follow the arc. <span style="color:var(--text-muted);font-weight:500">Click any node for detail.</span></div>
+    <div class="tabs" id="tabs" role="tablist"></div>
     <div class="flow">
-      <div class="flow-row">
-        <div class="node audit" data-skill="dte-arc-auditor"><div class="k">dte-arc-auditor</div><div class="s">audit an app → roadmap</div></div>
-        <span class="arrow">→</span>
-        <div class="node plan" data-skill="dte-arc-plan"><div class="k">dte-arc-plan</div><div class="s">spec/findings → validated plans</div></div>
-        <span class="arrow">→</span>
-        <div class="node work" data-skill="dte-arc-work"><div class="k">dte-arc-work</div><div class="s">build · gate · report · loop</div></div>
-        <span class="arrow">→</span>
-        <div class="node verify" data-skill="dte-deep-reviewer"><div class="k">verify</div><div class="s">deep-reviewer + test-auditor</div></div>
+      <div class="flow-desc" id="flow-desc"></div>
+      <div class="flow-row" id="flow-row"></div>
+      <div class="flow-foot">
+        <span class="g">◇ <b style="color:var(--accent)">validated</b> plan</span><span class="sep">·</span>
+        <span class="g">runnable <b>gate</b> before each commit</span><span class="sep">·</span>
+        <span class="g"><b>report + pause</b> every phase</span><span class="sep">·</span>
+        <span class="g">never runs dark</span>
       </div>
-      <div class="feeders">
-        <span class="feeder">/ce-plan builds it</span>
-        <span class="feeder">/ie-validate-plan validates it</span>
-        <span class="feeder">claims verified vs code</span>
-        <span class="feeder">runnable gate every commit</span>
-        <span class="feeder">report + pause every phase</span>
-      </div>
-      <div class="flow-cap">Greenfield from a spec → <b>plan → work</b>. Re-architect an app → <b>auditor → work</b>. Verify failures loop back into work. <b>Click any node</b> for detail.</div>
     </div>
   </section>
 
@@ -243,14 +252,15 @@
     <h2>How it works</h2>
     <div class="lead">The discipline a one-off prompt forgets — made first-class.</div>
     <div class="princ">
-      <div class="pr"><div class="n">01</div><h4>Compose, don't reinvent</h4><p>Every skill invokes the real tools — ce-plan, ie-validate-plan, layered-rails — not a hand-rolled imitation.</p></div>
-      <div class="pr"><div class="n">02</div><h4>Plan, then validate</h4><p>Real work is planned with compound-engineering and validated with intent-engineering before a line is written.</p></div>
-      <div class="pr"><div class="n">03</div><h4>Verify, don't trust</h4><p>A plan's load-bearing claims are checked against the code, not assumed — the misclassification you catch is the file you'd have moved wrong.</p></div>
-      <div class="pr"><div class="n">04</div><h4>Gate + report every step</h4><p>A runnable gate before every commit; a report and a pause after every phase. No dark loops, no silent failures.</p></div>
-      <div class="pr"><div class="n">05</div><h4>Loop at scale</h4><p>A massive task decomposes into many small validated plans, completed one by one.</p></div>
-      <div class="pr"><div class="n">06</div><h4>Degrade gracefully</h4><p>Optional tools are used if present and their absence is stated — never silently skipped.</p></div>
+      <div class="pr"><div class="n">01</div><h3>Compose, don't reinvent</h3><p>Every skill invokes the real tools — ce-plan, ie-validate-plan, layered-rails — not a hand-rolled imitation.</p></div>
+      <div class="pr"><div class="n">02</div><h3>Plan, then validate</h3><p>Real work is planned with compound-engineering and validated with intent-engineering before a line is written.</p></div>
+      <div class="pr"><div class="n">03</div><h3>Verify, don't trust</h3><p>A plan's load-bearing claims are checked against the code, not assumed — the misclassification you catch is the file you'd have moved wrong.</p></div>
+      <div class="pr"><div class="n">04</div><h3>Gate + report every step</h3><p>A runnable gate before every commit; a report and a pause after every phase. No dark loops, no silent failures.</p></div>
+      <div class="pr"><div class="n">05</div><h3>Loop at scale</h3><p>A massive task decomposes into many small validated plans, completed one by one.</p></div>
+      <div class="pr"><div class="n">06</div><h3>Degrade gracefully</h3><p>Optional tools are used if present and their absence is stated — never silently skipped.</p></div>
     </div>
   </section>
+  </main>
 
   <div class="footer anim" style="--i:9">
     dte-skills · MIT · <a href="https://github.com/davidteren/dte-skills">github.com/davidteren/dte-skills</a>
@@ -428,6 +438,52 @@ document.getElementById('chips').addEventListener('click',e=>{
 });
 
 render();
+
+/* ── Flow recipes. Add a flow = append one object. Each step is a skill id +
+   a short caption; nodes are colored by the skill's category. ─────────────── */
+const FLOWS = [
+  { label:"Re-architect an app",
+    desc:"Assess the whole app, get a <b>validated migration roadmap</b>, then execute it gated and verified — the service-junk-drawer → modular monolith job.",
+    steps:[["dte-arc-auditor","audit → roadmap"],["dte-arc-plan","validated plans"],["dte-arc-work","build · gate · loop"],["dte-deep-reviewer","verify each phase"]] },
+  { label:"Ship a new feature",
+    desc:"<b>dte-feature</b> drives this end to end — back-end AND front-end each get a real plan, build, and verification. Neither half is an afterthought.",
+    steps:[["dte-arc-plan","plan both layers"],["dte-arc-work","build back-end"],["dte-ux","build front-end"],["dte-deep-reviewer","verify both"]] },
+  { label:"Review a PR",
+    desc:"Multi-lens, cross-model review of a diff, then turn the findings straight into <b>fixes</b> — planned, gated, and re-verified.",
+    steps:[["dte-deep-reviewer","review the diff"],["dte-arc-plan","plan the fixes"],["dte-arc-work","apply · gate"]] },
+  { label:"Make it fast",
+    desc:"<b>Measure before you advise.</b> Real numbers from AppSignal / EXPLAIN / Lighthouse find the bottleneck, then ranked fixes get applied.",
+    steps:[["dte-perf","measure → rank"],["dte-arc-plan","plan ranked fixes"],["dte-arc-work","apply · re-measure"]] },
+  { label:"Trust the tests",
+    desc:"Find out if the tests actually catch bugs — coverage, quality, and mutation — then close the real gaps.",
+    steps:[["dte-test-auditor","audit value"],["dte-arc-plan","plan the gaps"],["dte-arc-work","write · gate"]] },
+  { label:"Run a batch",
+    desc:"Many plans, reviews, or bugs? <b>dte-loop</b> front-loads every decision and hands back one command — each item on its own branch, sequential, gated.",
+    steps:[["dte-loop","worklist + command"],["dte-arc-plan","plan each item"],["dte-arc-work","one branch each"]] },
+];
+
+const tabs = document.getElementById('tabs');
+const flowDesc = document.getElementById('flow-desc');
+const flowRow = document.getElementById('flow-row');
+
+tabs.innerHTML = FLOWS.map((f,i)=>`<button class="tab" role="tab" data-i="${i}" aria-selected="${i===0}">${esc(f.label)}</button>`).join('');
+
+function renderFlow(i){
+  const f = FLOWS[i];
+  flowDesc.innerHTML = f.desc;
+  flowRow.innerHTML = f.steps.map(([id,cap],j)=>{
+    const cat = byId[id] ? byId[id].cat : 'plan';
+    const node = `<div class="node n-${cat}" data-skill="${id}"><div class="k">${esc(id)}</div><div class="s">${esc(cap)}</div></div>`;
+    return j < f.steps.length-1 ? node + '<span class="arrow">→</span>' : node;
+  }).join('');
+  flowRow.querySelectorAll('.node[data-skill]').forEach(n=>n.addEventListener('click',()=>openModal(n.dataset.skill)));
+}
+tabs.addEventListener('click',e=>{
+  const btn = e.target.closest('.tab'); if(!btn) return;
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', t===btn?'true':'false'));
+  renderFlow(+btn.dataset.i);
+});
+renderFlow(0);
 
 /* theme */
 (function(){var s=localStorage.getItem('dte-theme');if(s)document.documentElement.setAttribute('data-theme',s);
