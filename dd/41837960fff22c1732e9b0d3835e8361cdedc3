@@ -1,0 +1,22 @@
+docs/index.html
+  s_5f2c0b20dd2195::t_2fd916076b8353 163-164
+  s_5f2c0b20dd2195::t_91272ec5d3e40d 520
+  s_5f2c0b20dd2195::t_d50a2bcffe770b 424-425
+  s_5f2c0b20dd2195::t_9c5e6971efec2e 480
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "dd41837960fff22c1732e9b0d3835e8361cdedc3",
+  "prompts": {},
+  "sessions": {
+    "s_5f2c0b20dd2195": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8ddb3555-0c10-40f7-93bc-ed3970461a05",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
