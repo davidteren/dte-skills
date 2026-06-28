@@ -1,0 +1,34 @@
+docs/index.html
+  s_be4564f736f0f2::t_22227edc1211a5 151
+  s_be4564f736f0f2::t_a24feec0ff5682 263
+  s_be4564f736f0f2::t_a8609e88ca0048 72-73
+  s_be4564f736f0f2::t_22c7fdc5f23b2d 212-214,216-222
+  s_be4564f736f0f2::t_57d136ad85d1b5 16
+  s_be4564f736f0f2::t_b58f62b25dbd50 93
+  s_be4564f736f0f2::t_6cb59ab1357417 14-15,17-23,26-27,29-35,38-39,41-44
+  s_be4564f736f0f2::t_1b7919e3ae9168 255-260
+  s_be4564f736f0f2::t_9f81ea7d42fb18 111-112
+  s_be4564f736f0f2::t_58991315ae86f0 86-92,94-97,99,101-108
+  s_be4564f736f0f2::t_a95d154579205e 175
+  s_be4564f736f0f2::t_133b9f83a1f08e 28,40
+  s_be4564f736f0f2::t_d159115910a0a5 173
+  s_be4564f736f0f2::t_ff08fea8d56162 131-132
+  s_be4564f736f0f2::t_e722fa1bf361b5 210
+  s_be4564f736f0f2::t_b571476f80f498 442-487
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "f1d053a16e3fee693a1c52019b43f6313062af28",
+  "prompts": {},
+  "sessions": {
+    "s_be4564f736f0f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08b6680b-b92d-4a12-9966-443986abd36f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
