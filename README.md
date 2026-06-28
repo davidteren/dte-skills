@@ -41,6 +41,14 @@ that by making the discipline first-class:
 | **`/dte-arc-plan`** | turn findings / a spec / a bug into plan(s) | `ce-plan`-built, `ie-validate-plan`-validated plans (decomposes big work into many) |
 | **`/dte-arc-work`** | do the work, gated and looped | branches + gate-green diffs + per-phase reports |
 | **`/dte-tooling-scan`** | find what tooling to adopt next | overlap-aware adoption shortlist |
+| **`/dte-loop`** | set up an autonomous gated loop over a batch | worklist doc + the exact command to trigger it (questions front-loaded) |
+| **`/dte-spec`** | turn a fuzzy idea into a validated PRD | spec doc (What/Why/How, acceptance criteria) → feeds `dte-arc-plan` |
+| **`/dte-ux`** | review **and** produce front-end (UI/UX) | UX findings (states, a11y, look-and-feel) and/or built UI |
+| **`/dte-feature`** | build a full-stack feature, both layers solid | back-end + front-end planned, built, and **both** verified |
+| **`/dte-perf`** | find the real bottleneck, measured | baseline numbers + ranked, evidence-backed fixes |
+| **`/dte-security-sweep`** | security posture / PR review | traced, severity-ranked vulns + scanner results |
+| **`/dte-debug`** | track a bug to root cause, fix once | runnable repro (before/after) + shared-path fix + regression test |
+| **`/dte-migrate`** | safe upgrade or schema/data migration | small reversible gated steps + rollback path |
 
 ### How they fit together
 
@@ -56,9 +64,11 @@ flowchart LR
   TA -. fix pass .-> WK
 ```
 
-**Greenfield from a spec:** `dte-arc-plan` → `dte-arc-work`.
+**Greenfield from an idea:** `dte-spec` → `dte-arc-plan` → `dte-feature` (or `dte-arc-work`).
 **Re-architect an existing app:** `dte-arc-auditor` → `dte-arc-work`.
 **Check a PR / a slice / the tests:** `dte-deep-reviewer` / `dte-arc-review` / `dte-test-auditor`.
+**Specialist passes:** `dte-ux` (front-end) · `dte-perf` (speed) · `dte-security-sweep` (vulns) · `dte-debug` (bugs) · `dte-migrate` (upgrades).
+**Run a batch autonomously:** `dte-loop` builds the worklist + hands you one command; each item runs on its own branch, gated.
 
 → **[Visual guide & flow walkthrough](https://davidteren.github.io/dte-skills/)** ·
 → **[What each skill needs (dependency matrix)](DEPENDENCIES.md)**
@@ -118,7 +128,8 @@ honor the project's own `CLAUDE.md`).
 
 ## Project status & contributing
 
-Shipped state + roadmap: **[STATUS.md](STATUS.md)**. Building or editing a skill? Read
+Shipped state + roadmap: **[STATUS.md](STATUS.md)**. Where the suite is still thin + the decisions taken:
+**[GAPS.md](GAPS.md)**. Building or editing a skill? Read
 **[AGENTS.md](AGENTS.md)** first — it carries the design rules and the hard-won lessons that keep the
 skills solid (why dark loops, self-critique, and unverified claims are banned).
 

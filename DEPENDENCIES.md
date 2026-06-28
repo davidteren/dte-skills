@@ -69,6 +69,56 @@ ponytail/ce-simplify-code.
 | — | compound-engineering (`ce-sessions`), MemPalace | Augment, web search |
 Runs on whatever history sources exist; with none, falls back to repo `STATUS`/git history (and says so).
 
+### `/dte-loop` — batch → worklist + autonomous gated loop
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| `dte-arc-work` (the executor) | `dte-arc-plan` (builds a validated INDEX worklist), built-in `/loop` (resilient wrapper) | `dte-deep-reviewer`/`dte-arc-review` (review-merge batches) |
+Sets up the worklist + emits the trigger command; the actual loop is `dte-arc-work`. Without `dte-arc-plan`
+the worklist is built by hand (plans unvalidated); without `/loop` only the direct command is emitted.
+
+### `/dte-spec` — idea → validated spec/PRD
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| intent-engineering (`ie-validate-plan`) | compound-engineering (`ce-brainstorm`, `ce-ideate`) | Augment/cubic (existing-feature context) |
+Validation is the hard requirement — a spec isn't done until `ie-validate-plan` gaps are resolved.
+
+### `/dte-ux` — review & produce front-end (UI/UX)
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| the **ui.sh** family (`ui`, `ui-design`, `ui-componentize`, `ui-make-responsive`, `ui-add-dark-mode`, `ui-markup-from-image`) **or** `frontend-design` + `ie-experience-reviewer` | both of the above together | chrome-devtools (`lighthouse_audit`, snapshots), Augment |
+Review runs on frontend-design + ie-experience-reviewer; building needs the ui.sh skills. No browser → a11y
+is heuristic, not measured.
+
+### `/dte-feature` — full-stack feature (both layers)
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| `dte-arc-plan`, `dte-arc-work`, `dte-ux` | `dte-deep-reviewer` + `dte-test-auditor` (verify), `ce-simplify-code`/ponytail | `dte-spec` (shape a fuzzy idea first), chrome-devtools |
+Composes the arc skills for the back-end and `dte-ux` for the front-end; both layers must verify.
+
+### `/dte-perf` — measured performance review
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| majestic-rails (`performance-reviewer`, `database-optimizer`) | AppSignal MCP (production numbers), chrome-devtools (FE traces + Lighthouse), `database-admin` | Augment, a load/benchmark tool |
+Measures first. No AppSignal → EXPLAIN/logs/benchmarks; no chrome-devtools → FE findings flagged heuristic.
+
+### `/dte-security-sweep` — security posture / PR review
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| the `security-audit` **or** `security-review` skill | **Brakeman** + **bundler-audit**, majestic `privacy-reviewer`/`data-integrity-reviewer`, `ie-predictability-reviewer` | Augment (source→sink tracing) |
+Scanners give the runnable signal; absent → manual sink-tracing, flagged "scanners not run".
+
+### `/dte-debug` — root-cause bug fix
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| compound-engineering (`ce-debug`) **or** majestic `rails-debugger` | a test framework (repro + regression test), Augment (trace the path) | AppSignal (production error context) |
+Needs a runnable repro before and after. No AppSignal → logs/local repro for production bugs.
+
+### `/dte-migrate` — safe upgrade / schema-data migration
+| Required 🟢 | Recommended 🟡 | Optional ⚪ |
+|---|---|---|
+| `dte-arc-plan`/`ce-plan` + `ce-work` | majestic `gemfile-upgrade`, `gemfile-organize`, `database-admin`, `database-optimizer`, `gem-research` | `dte-loop` (run the stepwise plan autonomously) |
+Every step reversible + gate-green (incl. migrate↔rollback round-trip). No data migration without a tested rollback.
+
 ## Minimum vs full
 
 - **Minimum useful set:** compound-engineering + intent-engineering (+ layered-rails for the Rails
