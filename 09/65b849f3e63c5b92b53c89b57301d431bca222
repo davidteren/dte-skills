@@ -1,0 +1,39 @@
+docs/index.html
+  s_be4564f736f0f2::t_7d5e44cc5817d7 314
+  s_be4564f736f0f2::t_88ec4c71044289 322
+  s_be4564f736f0f2::t_66101f82a2ee22 491-493,500-506
+  s_be4564f736f0f2::t_913928adbae101 426
+  s_be4564f736f0f2::t_4bb90de6706ab0 410
+  s_be4564f736f0f2::t_f58dd844fa170e 378
+  s_be4564f736f0f2::t_c09f3f5020b9e1 346
+  s_be4564f736f0f2::t_b3f239c0b5b323 470-473
+  s_be4564f736f0f2::t_8cc70c06c0947d 306
+  s_be4564f736f0f2::t_26fa26c31e3e0d 362
+  s_be4564f736f0f2::t_4a9c50c72d2eb3 298
+  s_be4564f736f0f2::t_1ecb786f41db7e 354
+  s_be4564f736f0f2::t_4b5f7dd210ada3 418
+  s_be4564f736f0f2::t_ed94f92929b895 394
+  s_be4564f736f0f2::t_489c87f59396bb 290
+  s_be4564f736f0f2::t_e141c3458c4f59 338
+  s_be4564f736f0f2::t_f2bb842d558920 370
+  s_be4564f736f0f2::t_1478b5a4a073dd 402
+  s_be4564f736f0f2::t_8b52d3a41673b8 386
+  s_be4564f736f0f2::t_67f535c20f24b2 330
+  s_be4564f736f0f2::t_3c1c29d40ec3e0 161-167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "0965b849f3e63c5b92b53c89b57301d431bca222",
+  "prompts": {},
+  "sessions": {
+    "s_be4564f736f0f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08b6680b-b92d-4a12-9966-443986abd36f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
