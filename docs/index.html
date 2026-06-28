@@ -521,6 +521,12 @@ const FLOWS = [
   { label:"Spec it out",
     desc:"Turn a one-line idea into a <b>validated spec</b> — scope, acceptance criteria, edge cases — then plan and build it. The what before the how.",
     steps:[["dte-spec","idea → validated PRD"],["dte-arc-plan","validated plans"],["dte-arc-work","build · gate"]] },
+  { label:"Make it installable",
+    desc:"Make a Rails app <b>installable and offline</b> on Rails 8's native PWA — manifest and service worker wired, then accessible install and offline states, verified with a Lighthouse PWA audit.",
+    steps:[["dte-pwa","manifest + service worker"],["dte-ux","install / offline UI"]] },
+  { label:"Plan & track",
+    desc:"Shape a fuzzy idea into a <b>validated spec</b>, file it as sequenced, tracked issues, then plan each for build — the what, the backlog, the how.",
+    steps:[["dte-spec","define the what"],["dte-pm","file + sequence issues"],["dte-arc-plan","plan each"]] },
 ];
 
 const tabs = document.getElementById('tabs');
