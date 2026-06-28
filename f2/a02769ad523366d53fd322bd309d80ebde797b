@@ -1,0 +1,49 @@
+DEPENDENCIES.md
+  s_5f2c0b20dd2195::t_083bfd72741354 72-121
+STATUS.md
+  s_5f2c0b20dd2195::t_163608044e6d6d 25-32,36-38
+  s_5f2c0b20dd2195::t_bd6d7a6cee6442 9-10
+  s_5f2c0b20dd2195::t_6f22c5bdeb4aa6 49,52-55,61
+.claude-plugin/plugin.json
+  s_5f2c0b20dd2195::t_c30949dbbd4906 3-4,6
+skills/dte-feature/SKILL.md
+  s_5f2c0b20dd2195::t_a9914b09c7319c 1-52
+README.md
+  s_5f2c0b20dd2195::t_e2e4920061e4d1 131-132
+  s_5f2c0b20dd2195::t_51f7af91346e2a 44-51
+  s_5f2c0b20dd2195::t_fe12ce5a625542 67,70-71
+skills/dte-debug/SKILL.md
+  s_5f2c0b20dd2195::t_df4956dd3c2cb2 1-43
+skills/dte-migrate/SKILL.md
+  s_5f2c0b20dd2195::t_2211da673f161d 1-52
+GAPS.md
+  s_5f2c0b20dd2195::t_3177605e9bc104 1-65
+.claude-plugin/marketplace.json
+  s_5f2c0b20dd2195::t_4d02cd6bcbd04f 4-5,12
+skills/dte-security-sweep/SKILL.md
+  s_5f2c0b20dd2195::t_f779a51361c0f8 1-44
+skills/dte-loop/SKILL.md
+  s_5f2c0b20dd2195::t_cdee00d4d19346 1-95
+skills/dte-ux/SKILL.md
+  s_5f2c0b20dd2195::t_79b17d295b1948 1-48
+skills/dte-spec/SKILL.md
+  s_5f2c0b20dd2195::t_5aa66c7e4a24db 1-45
+skills/dte-perf/SKILL.md
+  s_5f2c0b20dd2195::t_e57d326d3d987a 1-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "f2a02769ad523366d53fd322bd309d80ebde797b",
+  "prompts": {},
+  "sessions": {
+    "s_5f2c0b20dd2195": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8ddb3555-0c10-40f7-93bc-ed3970461a05",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
