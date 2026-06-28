@@ -158,6 +158,13 @@
   .modal-bd{padding:22px 26px 28px;display:flex;flex-direction:column;gap:22px}
   .blk h4{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:9px}
   .blk p{font-size:14.5px;color:var(--text-dim);line-height:1.65}
+  .qs{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:6px 6px 6px 14px}
+  .qs code{flex:1;min-width:0;font-family:var(--font-mono);font-size:13px;color:var(--text);overflow-x:auto;white-space:nowrap;padding:4px 0}
+  .qs .ph{color:var(--accent);font-style:normal}
+  .copy{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.3px;padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;flex:0 0 auto;transition:color .12s,border-color .12s}
+  .copy:hover{color:var(--text);border-color:var(--border-bright)}
+  .copy.done{color:var(--emerald);border-color:var(--emerald)}
+  .qs-note{font-size:12px;color:var(--text-muted);margin-top:7px}
   .trig{display:flex;flex-direction:column;gap:6px}
   .trig .t{font-size:13.5px;color:var(--text-dim);padding-left:18px;position:relative}
   .trig .t::before{content:"›";position:absolute;left:4px;color:var(--accent);font-weight:700}
@@ -280,6 +287,7 @@ const SKILLS = [
     blurb:"Re-architect a whole app → a validated, loop-executable migration roadmap.",
     does:"Full architectural audit of an entire Rails app or major subsystem. Classifies the current state, proposes a target architecture, and emits a phased, gated migration plan with a risks/decisions doc and a PROGRESS worklist — the 'service-junk-drawer → modular monolith / Packwerk' deliverable. Verifies its own load-bearing facts and surfaces the big forks up front.",
     output:"Doc set + PROGRESS worklist (hand to dte-arc-work)",
+    usage:"/dte-arc-auditor <path/to/app-or-subsystem>",
     triggers:["audit the architecture / do a full architectural audit","re-architect or restructure the app","plan a modular-monolith / Packwerk migration","assess this app and give me a migration plan"],
     composes:["dte-arc-review","dte-arc-plan","target-design step","AskUserQuestion forks"] },
 
@@ -287,6 +295,7 @@ const SKILLS = [
     blurb:"Architectural review of an app, subsystem, or slice → severity-ranked findings.",
     does:"Maps the structure with Augment, then runs the layered-rails analyzers, the intent-engineering audit, majestic Rails reviewers and a ponytail over-engineering pass into one severity-ranked findings doc. Diagnostic only — it never fixes; it hands off to plan/work.",
     output:"Findings doc (severity-ranked)",
+    usage:"/dte-arc-review <path/to/slice-or-subsystem>",
     triggers:["review the architecture / do an arc review","assess the structure or design","find god objects / fat models / layering problems","review a slice or subsystem"],
     composes:["Augment","layered-rails","ie-audit","majestic reviewers","ponytail"] },
 
@@ -294,6 +303,7 @@ const SKILLS = [
     blurb:"Deep multi-lens review of a PR, branch diff, or whole codebase.",
     does:"Runs compound-engineering's cross-model code review, the intent-engineering lenses, majestic's Rails review orchestrator and cubic review/scan — then adversarially cross-checks where they disagree before synthesizing a severity-ranked findings doc with file:line and fixes.",
     output:"Findings doc (confirmed vs disputed)",
+    usage:"/dte-deep-reviewer <PR# | branch-name | path>",
     triggers:["review this PR / branch / diff","deep review","check this codebase","hand over PR numbers or branch names"],
     composes:["ce-code-review","ie-review","majestic rails-code-review","cubic run-review/scan"] },
 
@@ -301,6 +311,7 @@ const SKILLS = [
     blurb:"Judge whether tests actually test anything — value, not presence.",
     does:"Checks coverage gaps AND quality: weak assertions, over-mocking, brittle implementation-coupled tests, and missing edge/error/integration paths — plus mutation testing where available to prove tests fail when the code breaks. Coverage % lies; this finds out if it's real.",
     output:"Findings doc (coverage + quality + mutation)",
+    usage:"/dte-test-auditor <path/to/tests-or-area>",
     triggers:["audit the tests","are these tests any good","do the tests actually test anything","check test coverage / quality"],
     composes:["SimpleCov","rails-testing","ce-code-review (testing persona)","mutant"] },
 
@@ -308,6 +319,7 @@ const SKILLS = [
     blurb:"Measured performance review → ranked, evidence-backed fixes.",
     does:"Finds the real bottlenecks — N+1s, missing indexes, slow queries, fat allocations, slow paint/bundle — with measured evidence from AppSignal, EXPLAIN ANALYZE, chrome-devtools traces and Lighthouse, then ranks fixes by impact. Measures before it advises; a finding without a number is marked 'suspected'.",
     output:"Findings doc (ranked, with numbers)",
+    usage:"/dte-perf <endpoint | query | page-or-route>",
     triggers:["it's slow / find the bottleneck","optimize this query / endpoint / page","why is this N+1","perf review"],
     composes:["majestic performance-reviewer","database-optimizer / admin","AppSignal","chrome-devtools","Lighthouse","Augment"] },
 
@@ -315,6 +327,7 @@ const SKILLS = [
     blurb:"Security review of an app, PR, or slice → traced, ranked vulnerabilities.",
     does:"Finds real vulnerabilities — authz gaps, injection, mass-assignment, secrets, SSRF, CSRF, PII leaks — and traces each to a real source→sink path or a scanner hit, not a vibe. Runs the security-audit / security-review skills, Brakeman and bundler-audit, plus the privacy and predictability lenses, then ranks by exploitability × impact and gates the must-fix set before ship.",
     output:"Findings doc (traced, must-fix gated)",
+    usage:"/dte-security-sweep <PR# | path | app>",
     triggers:["security review / security sweep","is this safe / check for vulnerabilities","audit auth / authorization","scan for secrets or PII"],
     composes:["security-audit","security-review","Brakeman","bundler-audit","privacy-reviewer","ie-predictability-reviewer"] },
 
@@ -322,6 +335,7 @@ const SKILLS = [
     blurb:"Audit the dte-* suite itself against its own quality bar.",
     does:"Checks every dte-* skill — does it compose (not reinvent), loop, degrade gracefully, read conventions first, and have sharp non-overlapping triggers — and cross-checks trigger overlap across the whole suite. Read-only; produces a scored report with a trigger-overlap matrix. The keystone concept turned inward on the suite.",
     output:"Scored audit doc + overlap matrix",
+    usage:"/dte-skill-audit",
     triggers:["audit the dte skills","are these skills solid","check the suite for overlap / bloat","skill-audit"],
     composes:["AGENTS.md quality bar","references/conventions.md","claude plugin validate"] },
 
@@ -329,6 +343,7 @@ const SKILLS = [
     blurb:"Findings / spec / bug → concrete, validated implementation plan(s).",
     does:"Turns architectural findings, a spec, or a bug into plans built with ce-plan and validated with ie-validate-plan — never hand-rolled. For massive work it decomposes into many small, independently-shippable validated plans and emits a plan INDEX that dte-arc-work then completes.",
     output:"Validated plans in docs/plans/ (+ INDEX)",
+    usage:"/dte-arc-plan <findings-doc | spec | \"describe the bug/refactor\">",
     triggers:["plan the fixes","make a plan from these findings","plan this bug / refactor / feature","break this big thing into plans"],
     composes:["ce-plan","ie-validate-plan","ie-plan-assist","layered-rails-planner","ce-code-review"] },
 
@@ -336,6 +351,7 @@ const SKILLS = [
     blurb:"Fuzzy idea → a right-sized, validated spec / PRD (the WHAT).",
     does:"Turns a one-line idea into a specification — problem, scope, non-goals, user stories, testable acceptance criteria, edge cases and UX states — explored with ce-brainstorm and validated as a separate pass with ie-validate-plan. Defines the what and why before any plan exists; validation gaps must be resolved before it's done.",
     output:"Validated spec/PRD in docs/specs/ (feeds dte-arc-plan)",
+    usage:"/dte-spec \"<one-line idea of what you want to build>\"",
     triggers:["spec this out / write a PRD","define the requirements","what should this do / scope this feature","shape a one-line idea"],
     composes:["ce-brainstorm","ce-ideate","ie-validate-plan","ie-plan-assist"] },
 
@@ -343,6 +359,7 @@ const SKILLS = [
     blurb:"Goal / spec → tracked, sequenced GitHub issues + a status index.",
     does:"Breaks a goal into independently-trackable units with ce-plan, files each as a GitHub issue (via dt-create-issue or gh) opening with a plain-language What/Why/How body and labels, and emits a tracking index ordered by dependency with the critical path. Owns tracking and sequencing — not the spec (dte-spec), not the implementation plan (dte-arc-plan).",
     output:"GitHub issues + tracking index (docs/pm/)",
+    usage:"/dte-pm \"<goal to break into tracked tickets>\"",
     triggers:["track this / create issues or tickets","break this into tickets","project-manage this / file the backlog","what's the status or order"],
     composes:["ce-plan","ce-brainstorm","dt-create-issue","gh issue create"] },
 
@@ -350,6 +367,7 @@ const SKILLS = [
     blurb:"Review → plan → work → verify — gated, reported, looping.",
     does:"The full cycle for a task, bug, area, or a whole plan INDEX. Composes review, plan, ce-work and simplify, then verifies with the deep-reviewer + test-auditor. A runnable gate runs before every commit; a report and pause follow every phase. Stops for your review by default; --ship to auto commit/PR.",
     output:"Shipped code — one branch + gate + report per item",
+    usage:"/dte-arc-work <task | docs/plans/INDEX-<topic>.md>",
     triggers:["fix this / do the work","implement this plan","work through these plans / tasks","handle this end to end"],
     composes:["dte-arc-review","dte-arc-plan","ce-work","ce-simplify-code / ponytail","dte-deep-reviewer","dte-test-auditor"] },
 
@@ -357,6 +375,7 @@ const SKILLS = [
     blurb:"Full-stack feature — back-end AND front-end, both solid.",
     does:"Plans, builds and verifies a feature across both layers: model/controller/job AND screen. Neither half is an afterthought — each gets a real plan, a real build, and real verification. Establishes a gate (tests + boot + JS/a11y) first; stops for review after each phase.",
     output:"Shipped full-stack feature (both layers verified)",
+    usage:"/dte-feature \"<feature, incl. its screen/UI>\"",
     triggers:["build this feature","ship this idea end to end","add <feature> with a UI","something needing a model AND a screen"],
     composes:["dte-arc-plan","dte-arc-work","dte-ux","ui.sh family","dte-deep-reviewer","ie-experience-reviewer"] },
 
@@ -364,6 +383,7 @@ const SKILLS = [
     blurb:"Track a bug to its root cause — fix it once, where all callers route.",
     does:"Reproduces the bug first (a failing test or console repro), traces the failing path with Augment and ce-debug, then fixes the cause in the shared path — not the one symptom the ticket named — and proves it with the same repro plus a regression test. A fix you can't show failing-then-passing isn't done.",
     output:"Root-cause fix + regression test (gate-green)",
+    usage:"/dte-debug \"<what's broken + how to reproduce>\"",
     triggers:["debug this / why is this failing","fix this bug / this exception","find the root cause","this test is flaky"],
     composes:["ce-debug","rails-debugger","Augment","AppSignal","a runnable repro"] },
 
@@ -371,6 +391,7 @@ const SKILLS = [
     blurb:"Safe upgrade or schema/data migration — small, reversible, gated steps.",
     does:"A Rails bump, gem upgrades, or a schema/data migration done in the smallest reversible increments, each with its own rollback and a gate (incl. a migrate↔rollback round-trip) before every commit. Researches upgrade safety with gem-research first; never bumps blind or ships one giant commit.",
     output:"Reversible, gate-green steps + rollback path",
+    usage:"/dte-migrate \"<upgrade or schema/data migration goal>\"",
     triggers:["upgrade Rails / this gem","bump dependencies","migrate the schema / backfill a column","zero-downtime migration"],
     composes:["gemfile-upgrade","gemfile-organize","database-admin","database-optimizer","gem-research","ce-work"] },
 
@@ -378,6 +399,7 @@ const SKILLS = [
     blurb:"Make a Rails app installable and offline — on Rails 8 native PWA.",
     does:"Wires Rails 8's built-in PWA scaffolding — manifest, service worker, routes — rather than hand-rolling one, then builds accessible install and offline/cached states with the ui.sh family and frontend-design, and verifies with a Lighthouse PWA audit. Won't cache authenticated responses or white-screen offline.",
     output:"Installable app — manifest + SW + Lighthouse PWA pass",
+    usage:"/dte-pwa",
     triggers:["make this a PWA / installable","add a web app manifest or service worker","work offline / add to home screen","installable web app"],
     composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","Lighthouse"] },
 
@@ -385,6 +407,7 @@ const SKILLS = [
     blurb:"Designer / UX-UI specialist — review AND build front-end.",
     does:"Reviews or produces front-end work: design fidelity, interaction states, look-and-feel, responsiveness, dark mode and accessibility. Ends in a findings doc and/or applied UI. --review for findings only, --build to produce. Won't introduce a second design language.",
     output:"Findings doc and/or applied UI",
+    usage:"/dte-ux --build <screen | component | mockup-path>",
     triggers:["review the UI/UX","design this screen / build this component","improve the look-and-feel / make it responsive","turn this mockup or screenshot into UI"],
     composes:["ui.sh family","ui-markup-from-image","ui-make-responsive","ui-add-dark-mode","frontend-design","ie-experience-reviewer"] },
 
@@ -392,6 +415,7 @@ const SKILLS = [
     blurb:"Set up an autonomous, gated loop over a batch of work.",
     does:"Turns 'I have many plans / reviews / bugs' into a worklist doc, asks every predictable decision UP FRONT, then hands back the exact command to start. Each item runs on its own branch, sequentially, gated, with the approve→merge criteria you set. Won't run dark and won't stall mid-way.",
     output:"Worklist doc + the command to paste",
+    usage:"/dte-loop <docs/plans/INDEX-<topic>.md | list of items>",
     triggers:["loop over these / run these autonomously","implement all these plans, each on its own branch","set up a loop","what command do I run to loop this"],
     composes:["/loop","dte-arc-plan","dte-arc-work","dte-deep-reviewer","dte-arc-review"] },
 
@@ -399,6 +423,7 @@ const SKILLS = [
     blurb:"Mine history → what tooling to adopt next, overlap-aware.",
     does:"Synthesizes what you actually do from session history and MemPalace, inventories what you already own, finds real gaps, and applies the overlap rule to reject duplicates. Produces a ranked recommendations doc with adopt / bookmark / skip calls — it never installs anything.",
     output:"Recommendations doc (ranked, overlap-aware)",
+    usage:"/dte-tooling-scan [topic | \"last 2 weeks\"]",
     triggers:["what tools should we add","scan our history for gaps","what are we missing","tooling review"],
     composes:["ce-sessions","MemPalace","skill-vet overlap logic","light web research"] },
 ];
@@ -442,6 +467,10 @@ function render(){
   grid.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>openModal(c.dataset.skill)));
 }
 
+function usageHTML(u){
+  return esc(u).replace(/&lt;[^&]*?&gt;/g, m=>`<span class="ph">${m}</span>`);
+}
+
 function depHTML(d){
   return byId[d] ? `<span class="dep sib" data-skill="${d}">${esc(d)} ↗</span>` : `<span class="dep">${esc(d)}</span>`;
 }
@@ -459,12 +488,22 @@ function openModal(id){
       <div class="blurb">${esc(s.blurb)}</div>
     </div>
     <div class="modal-bd">
+      <div class="blk"><h4>Quick start — copy, then fill in the <span style="color:var(--accent)">&lt;placeholders&gt;</span></h4>
+        <div class="qs"><code>${usageHTML(s.usage)}</code><button class="copy" type="button">Copy</button></div>
+        <div class="qs-note">Paste into Claude Code. Drop any <span class="ph">&lt;…&gt;</span> you don't need — most skills also run on a plain sentence.</div></div>
       <div class="blk"><h4>What it does</h4><p>${esc(s.does)}</p></div>
       <div class="blk"><h4>Trigger it when you say</h4><div class="trig">${s.triggers.map(t=>`<span class="t">${esc(t)}</span>`).join('')}</div></div>
       <div class="blk"><h4>Composes — depends on</h4><div class="deps">${s.composes.map(depHTML).join('')}</div></div>
       <div class="blk"><h4>Output</h4><div class="out ${s.writes?'':'read'}">${s.writes?'✎ ':'◇ '}${esc(s.output)}</div></div>
     </div>`;
   modal.querySelector('.modal-close').addEventListener('click',closeModal);
+  const copyBtn = modal.querySelector('.copy');
+  copyBtn.addEventListener('click',()=>{
+    navigator.clipboard.writeText(s.usage).then(()=>{
+      copyBtn.textContent='Copied ✓'; copyBtn.classList.add('done');
+      setTimeout(()=>{copyBtn.textContent='Copy'; copyBtn.classList.remove('done');},1400);
+    }).catch(()=>{copyBtn.textContent='Press ⌘C';});
+  });
   modal.querySelectorAll('.dep.sib').forEach(d=>d.addEventListener('click',()=>openModal(d.dataset.skill)));
   overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
