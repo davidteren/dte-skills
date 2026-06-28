@@ -201,7 +201,7 @@
       <span class="c">claude</span> plugin install dte-skills@dte-skills-marketplace
     </div>
     <div class="stats anim" style="--i:5">
-      <div class="stat"><div class="num" id="stat-count">11</div><div class="lab">skills</div></div>
+      <div class="stat"><div class="num" id="stat-count">18</div><div class="lab">skills</div></div>
       <div class="stat"><div class="num">5</div><div class="lab">stages</div></div>
       <div class="stat"><div class="num">∞</div><div class="lab">extendable</div></div>
     </div>
@@ -311,12 +311,40 @@ const SKILLS = [
     triggers:["it's slow / find the bottleneck","optimize this query / endpoint / page","why is this N+1","perf review"],
     composes:["majestic performance-reviewer","database-optimizer / admin","AppSignal","chrome-devtools","Lighthouse","Augment"] },
 
+  { id:"dte-security-sweep", cat:"review", writes:false,
+    blurb:"Security review of an app, PR, or slice → traced, ranked vulnerabilities.",
+    does:"Finds real vulnerabilities — authz gaps, injection, mass-assignment, secrets, SSRF, CSRF, PII leaks — and traces each to a real source→sink path or a scanner hit, not a vibe. Runs the security-audit / security-review skills, Brakeman and bundler-audit, plus the privacy and predictability lenses, then ranks by exploitability × impact and gates the must-fix set before ship.",
+    output:"Findings doc (traced, must-fix gated)",
+    triggers:["security review / security sweep","is this safe / check for vulnerabilities","audit auth / authorization","scan for secrets or PII"],
+    composes:["security-audit","security-review","Brakeman","bundler-audit","privacy-reviewer","ie-predictability-reviewer"] },
+
+  { id:"dte-skill-audit", cat:"review", writes:false,
+    blurb:"Audit the dte-* suite itself against its own quality bar.",
+    does:"Checks every dte-* skill — does it compose (not reinvent), loop, degrade gracefully, read conventions first, and have sharp non-overlapping triggers — and cross-checks trigger overlap across the whole suite. Read-only; produces a scored report with a trigger-overlap matrix. The keystone concept turned inward on the suite.",
+    output:"Scored audit doc + overlap matrix",
+    triggers:["audit the dte skills","are these skills solid","check the suite for overlap / bloat","skill-audit"],
+    composes:["AGENTS.md quality bar","references/conventions.md","claude plugin validate"] },
+
   { id:"dte-arc-plan", cat:"plan", writes:false,
     blurb:"Findings / spec / bug → concrete, validated implementation plan(s).",
     does:"Turns architectural findings, a spec, or a bug into plans built with ce-plan and validated with ie-validate-plan — never hand-rolled. For massive work it decomposes into many small, independently-shippable validated plans and emits a plan INDEX that dte-arc-work then completes.",
     output:"Validated plans in docs/plans/ (+ INDEX)",
     triggers:["plan the fixes","make a plan from these findings","plan this bug / refactor / feature","break this big thing into plans"],
     composes:["ce-plan","ie-validate-plan","ie-plan-assist","layered-rails-planner","ce-code-review"] },
+
+  { id:"dte-spec", cat:"plan", writes:false,
+    blurb:"Fuzzy idea → a right-sized, validated spec / PRD (the WHAT).",
+    does:"Turns a one-line idea into a specification — problem, scope, non-goals, user stories, testable acceptance criteria, edge cases and UX states — explored with ce-brainstorm and validated as a separate pass with ie-validate-plan. Defines the what and why before any plan exists; validation gaps must be resolved before it's done.",
+    output:"Validated spec/PRD in docs/specs/ (feeds dte-arc-plan)",
+    triggers:["spec this out / write a PRD","define the requirements","what should this do / scope this feature","shape a one-line idea"],
+    composes:["ce-brainstorm","ce-ideate","ie-validate-plan","ie-plan-assist"] },
+
+  { id:"dte-pm", cat:"plan", writes:false,
+    blurb:"Goal / spec → tracked, sequenced GitHub issues + a status index.",
+    does:"Breaks a goal into independently-trackable units with ce-plan, files each as a GitHub issue (via dt-create-issue or gh) opening with a plain-language What/Why/How body and labels, and emits a tracking index ordered by dependency with the critical path. Owns tracking and sequencing — not the spec (dte-spec), not the implementation plan (dte-arc-plan).",
+    output:"GitHub issues + tracking index (docs/pm/)",
+    triggers:["track this / create issues or tickets","break this into tickets","project-manage this / file the backlog","what's the status or order"],
+    composes:["ce-plan","ce-brainstorm","dt-create-issue","gh issue create"] },
 
   { id:"dte-arc-work", cat:"build", writes:true,
     blurb:"Review → plan → work → verify — gated, reported, looping.",
@@ -331,6 +359,27 @@ const SKILLS = [
     output:"Shipped full-stack feature (both layers verified)",
     triggers:["build this feature","ship this idea end to end","add <feature> with a UI","something needing a model AND a screen"],
     composes:["dte-arc-plan","dte-arc-work","dte-ux","ui.sh family","dte-deep-reviewer","ie-experience-reviewer"] },
+
+  { id:"dte-debug", cat:"build", writes:true,
+    blurb:"Track a bug to its root cause — fix it once, where all callers route.",
+    does:"Reproduces the bug first (a failing test or console repro), traces the failing path with Augment and ce-debug, then fixes the cause in the shared path — not the one symptom the ticket named — and proves it with the same repro plus a regression test. A fix you can't show failing-then-passing isn't done.",
+    output:"Root-cause fix + regression test (gate-green)",
+    triggers:["debug this / why is this failing","fix this bug / this exception","find the root cause","this test is flaky"],
+    composes:["ce-debug","rails-debugger","Augment","AppSignal","a runnable repro"] },
+
+  { id:"dte-migrate", cat:"build", writes:true,
+    blurb:"Safe upgrade or schema/data migration — small, reversible, gated steps.",
+    does:"A Rails bump, gem upgrades, or a schema/data migration done in the smallest reversible increments, each with its own rollback and a gate (incl. a migrate↔rollback round-trip) before every commit. Researches upgrade safety with gem-research first; never bumps blind or ships one giant commit.",
+    output:"Reversible, gate-green steps + rollback path",
+    triggers:["upgrade Rails / this gem","bump dependencies","migrate the schema / backfill a column","zero-downtime migration"],
+    composes:["gemfile-upgrade","gemfile-organize","database-admin","database-optimizer","gem-research","ce-work"] },
+
+  { id:"dte-pwa", cat:"build", writes:true,
+    blurb:"Make a Rails app installable and offline — on Rails 8 native PWA.",
+    does:"Wires Rails 8's built-in PWA scaffolding — manifest, service worker, routes — rather than hand-rolling one, then builds accessible install and offline/cached states with the ui.sh family and frontend-design, and verifies with a Lighthouse PWA audit. Won't cache authenticated responses or white-screen offline.",
+    output:"Installable app — manifest + SW + Lighthouse PWA pass",
+    triggers:["make this a PWA / installable","add a web app manifest or service worker","work offline / add to home screen","installable web app"],
+    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","Lighthouse"] },
 
   { id:"dte-ux", cat:"design", writes:true,
     blurb:"Designer / UX-UI specialist — review AND build front-end.",
