@@ -367,7 +367,7 @@ const SKILLS = [
     blurb:"Review → plan → work → verify — gated, reported, looping.",
     does:"The full cycle for a task, bug, area, or a whole plan INDEX. Composes review, plan, ce-work and simplify, then verifies with the deep-reviewer + test-auditor. A runnable gate runs before every commit; a report and pause follow every phase. Stops for your review by default; --ship to auto commit/PR.",
     output:"Shipped code — one branch + gate + report per item",
-    usage:"/dte-arc-work <task | docs/plans/INDEX-<topic>.md>",
+    usage:"/dte-arc-work <task | plan-INDEX path>",
     triggers:["fix this / do the work","implement this plan","work through these plans / tasks","handle this end to end"],
     composes:["dte-arc-review","dte-arc-plan","ce-work","ce-simplify-code / ponytail","dte-deep-reviewer","dte-test-auditor"] },
 
@@ -415,7 +415,7 @@ const SKILLS = [
     blurb:"Set up an autonomous, gated loop over a batch of work.",
     does:"Turns 'I have many plans / reviews / bugs' into a worklist doc, asks every predictable decision UP FRONT, then hands back the exact command to start. Each item runs on its own branch, sequentially, gated, with the approve→merge criteria you set. Won't run dark and won't stall mid-way.",
     output:"Worklist doc + the command to paste",
-    usage:"/dte-loop <docs/plans/INDEX-<topic>.md | list of items>",
+    usage:"/dte-loop <plan-INDEX path | list of items>",
     triggers:["loop over these / run these autonomously","implement all these plans, each on its own branch","set up a loop","what command do I run to loop this"],
     composes:["/loop","dte-arc-plan","dte-arc-work","dte-deep-reviewer","dte-arc-review"] },
 
