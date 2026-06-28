@@ -1,0 +1,28 @@
+DEPENDENCIES.md
+  s_a526102195a0a2::t_ea495a9215e0fa 38-43
+  s_a526102195a0a2::t_5331469cd3598a 56-60
+skills/dte-test-auditor/SKILL.md
+  s_a526102195a0a2::t_a625f7b654eddc 22-28
+skills/dte-arc-review/SKILL.md
+  s_a526102195a0a2::t_8a795f045788b5 24-30
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_b5a2052c9c06aa 4
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_241057e18e60b1 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "e4b9e39a2711a285a7a22f2f9f98bb64551c89c0",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
