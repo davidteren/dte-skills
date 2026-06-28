@@ -1,0 +1,34 @@
+DEPENDENCIES.md
+  s_a526102195a0a2::t_379698d41cfc09 91
+  s_a526102195a0a2::t_39bc1d57287aa8 44-47
+  s_a526102195a0a2::t_6f5216e9226eab 98
+  s_a526102195a0a2::t_f785cf09950b6d 110-114
+  s_a526102195a0a2::t_395dc3bdef8e3e 125,127-129
+  s_a526102195a0a2::t_5fd24895059ac6 19
+references/conventions.md
+  s_a526102195a0a2::t_f0533d0c150a13 48-53
+STATUS.md
+  s_a526102195a0a2::t_46ee20eae0f32e 43-49
+  s_a526102195a0a2::t_f8533468724bd3 9
+  s_a526102195a0a2::t_5d84598f89cd98 83-87
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_6a726d1f1fd2c8 4
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_9ac9f4ae991faf 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "e3d88fea07dd1ad899f6449f1308a5218ccbd39c",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
