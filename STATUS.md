@@ -6,7 +6,7 @@ _Living tracker for the plugin. Last updated: 2026-06-28._
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.1**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.4.2**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
@@ -40,7 +40,13 @@ loops + claim-verify + per-phase reporting (lessons from the ongela refactor ses
 8 skills: `dte-loop` (autonomous-loop driver), `dte-spec`, `dte-ux`, `dte-feature`, `dte-perf`,
 `dte-security-sweep`, `dte-debug`, `dte-migrate` + the [GAPS.md](GAPS.md) tracker · **v1.4.0** dogfooded
 `/dte-loop` on the backlog → added `dte-pm`, `dte-pwa`, `dte-skill-audit` + wired the **front-end lens**
-into `dte-deep-reviewer`/`dte-arc-review`/`conventions.md`.**
+into `dte-deep-reviewer`/`dte-arc-review`/`conventions.md`.** · **v1.4.2** wired the
+**hotwire-rails-toolkit** deterministic checkers in as an Optional composed dependency — the
+deterministic-linter layer the suite lacked (everything else is LLM-driven). Its `lint_stimulus`/
+`lint_turbo_streams`/`lint_morphing`/`lint_bridge_contract` checkers now back the Front-end lens in reviews,
+`audit_token_auth` + the stream-eavesdrop check feed `dte-security-sweep`, and `upgrade_audit` + the
+LazyRouteSet flake detector feed `dte-migrate` on Rails 7→8 bumps. (Toolkit `lint_stimulus` typed-Values
+false-positive fixed + shipped as toolkit v1.0.1 in the same pass; validated against `miela_app`.)
 
 ---
 
@@ -74,6 +80,11 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
 - **interactors-not-services** for these projects.
 - Skills are recipes that **compose** installed tools — see [DEPENDENCIES.md](DEPENDENCIES.md) for what
   each needs. Keep the suite tight; reject overlap (the majestic 47-skill bloat lesson).
+- **Deterministic checkers vs LLM lenses:** the composed toolchain is LLM-driven (coders/reviewers); the
+  **hotwire-rails-toolkit** is the one source of runnable, exact linters (failures-that-produce-no-error).
+  Where it applies (Hotwire/Stimulus/Turbo/native diffs, Rails 7→8, token auth) run its checker as a fast
+  exact pre-pass that **grounds** the LLM lens — never replaces it. Always Optional ⚪: skip with a note if
+  not installed. `audit_token_auth` assumes a DB-backed token design → advisory on Devise/other auth.
 
 ## How to evolve this safely
 Read [AGENTS.md](AGENTS.md) before adding/editing a skill — it carries the design rules and the lessons

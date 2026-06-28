@@ -45,7 +45,12 @@ must detect front-end diffs and pull the front-end lens in:**
 - **When present, pull in:** the **ui.sh** skills + **frontend-design** (look-and-feel, intentional vs
   templated) + **`ie-experience-reviewer`** (interaction states loading/empty/error/disabled, keyboard/
   focus/back-button, accessibility, information architecture). For a heavier pass hand the slice to **`dte-ux`**.
-- **Report FE findings in the same doc**, severity-ranked alongside the back-end ones — don't silently drop them.
+- **Run the deterministic checkers** when the diff touches Stimulus/Turbo/Hotwire Native — the
+  **hotwire-rails-toolkit** linters (`lint_stimulus`, `lint_turbo_streams`, `lint_morphing`,
+  `lint_bridge_contract`) catch the failures that produce no error (undeclared Values/Targets, a `connect()`
+  with no `disconnect()` cleanup, a stream channel that broadcasts without authorizing, a bridge payload key
+  dropped on one native side). They're a fast, exact pre-pass that grounds the LLM lens above; feed their
+  output into the same findings doc. Skip with a note if the plugin isn't installed (Optional).
 - No FE files in scope → state "no front-end changes detected" and skip (don't fabricate FE findings).
 
 ## Output shape (findings + plans)

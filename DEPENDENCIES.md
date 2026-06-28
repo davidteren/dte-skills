@@ -16,6 +16,7 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 | layered-rails | [palkan/skills](https://github.com/palkan/skills) | `/layered-rails`, `analyze-callbacks/gods/services`, `layered-rails-planner/reviewer` |
 | majestic-rails | majestic-marketplace | `pragmatic-rails-reviewer`, `data-integrity-reviewer`, `review:rails-code-review`, `minitest-coder`, … |
 | rails-testing | visuality `rails-testing-v8` | idiomatic Rails 8 + Minitest + fixtures guidance |
+| hotwire-rails-toolkit | [davidteren/hotwire-rails-toolkit](https://github.com/davidteren/hotwire-rails-toolkit) | runnable Hotwire/Stimulus/Turbo **checkers** (CI-friendly bash): `lint_stimulus`, `lint_turbo_streams`, `lint_morphing`, `audit_token_auth`, `upgrade_audit` + LazyRouteSet flake detector, `lint_bridge_contract`/`lint_path_config` — deterministic linters that flag failures-with-no-error |
 | ponytail | ponytail | the lazy-senior elegance / over-engineering pass |
 | cubic | cubic | `/run-review`, `/scan`, `codebase-context`, `wiki` |
 | Augment | auggie MCP | semantic `codebase-retrieval` |
@@ -40,8 +41,10 @@ Needs at least one architecture lens. With both layered-rails and ie-audit it cr
 ### `/dte-deep-reviewer` — PR / branch / diff review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| compound-engineering (`ce-code-review`) **or** intent-engineering (`ie-review`) | majestic-rails (`review:rails-code-review`) | cubic (`run-review`/`scan`), Augment |
-Cross-model second opinion comes from `ce-code-review` (compound-engineering ≥ 3.14).
+| compound-engineering (`ce-code-review`) **or** intent-engineering (`ie-review`) | majestic-rails (`review:rails-code-review`) | cubic (`run-review`/`scan`), Augment, **hotwire-rails-toolkit** (Stimulus/Turbo/bridge linters when the diff has FE/native files) |
+Cross-model second opinion comes from `ce-code-review` (compound-engineering ≥ 3.14). On a diff touching
+Stimulus/Turbo/Hotwire Native, run the **hotwire-rails-toolkit** checkers first (per the Front-end lens in
+`conventions.md`) — deterministic findings that ground the LLM review.
 
 ### `/dte-test-auditor` — test value / quality / coverage
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
@@ -85,14 +88,14 @@ Validation is the hard requirement — a spec isn't done until `ie-validate-plan
 ### `/dte-ux` — review & produce front-end (UI/UX)
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| the **ui.sh** family (`ui`, `ui-design`, `ui-componentize`, `ui-make-responsive`, `ui-add-dark-mode`, `ui-markup-from-image`) **or** `frontend-design` + `ie-experience-reviewer` | both of the above together | chrome-devtools (`lighthouse_audit`, snapshots), Augment |
+| the **ui.sh** family (`ui`, `ui-design`, `ui-componentize`, `ui-make-responsive`, `ui-add-dark-mode`, `ui-markup-from-image`) **or** `frontend-design` + `ie-experience-reviewer` | both of the above together | chrome-devtools (`lighthouse_audit`, snapshots), Augment, **hotwire-rails-toolkit** (`lint_stimulus` + `stimulus-patterns`/`turbo-*` guidance for Stimulus/Turbo work) |
 Review runs on frontend-design + ie-experience-reviewer; building needs the ui.sh skills. No browser → a11y
 is heuristic, not measured.
 
 ### `/dte-feature` — full-stack feature (both layers)
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| `dte-arc-plan`, `dte-arc-work`, `dte-ux` | `dte-deep-reviewer` + `dte-test-auditor` (verify), `ce-simplify-code`/ponytail | `dte-spec` (shape a fuzzy idea first), chrome-devtools |
+| `dte-arc-plan`, `dte-arc-work`, `dte-ux` | `dte-deep-reviewer` + `dte-test-auditor` (verify), `ce-simplify-code`/ponytail | `dte-spec` (shape a fuzzy idea first), chrome-devtools, **hotwire-rails-toolkit** (Stimulus/Turbo/bridge checkers in the verify step) |
 Composes the arc skills for the back-end and `dte-ux` for the front-end; both layers must verify.
 
 ### `/dte-perf` — measured performance review
@@ -104,8 +107,11 @@ Measures first. No AppSignal → EXPLAIN/logs/benchmarks; no chrome-devtools →
 ### `/dte-security-sweep` — security posture / PR review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| the `security-audit` **or** `security-review` skill | **Brakeman** + **bundler-audit**, majestic `privacy-reviewer`/`data-integrity-reviewer`, `ie-predictability-reviewer` | Augment (source→sink tracing) |
-Scanners give the runnable signal; absent → manual sink-tracing, flagged "scanners not run".
+| the `security-audit` **or** `security-review` skill | **Brakeman** + **bundler-audit**, majestic `privacy-reviewer`/`data-integrity-reviewer`, `ie-predictability-reviewer` | Augment (source→sink tracing), **hotwire-rails-toolkit** (`audit_token_auth` enumeration/plaintext-token/opt-in-auth checks; `lint_turbo_streams` broadcast-eavesdropping check) |
+Scanners give the runnable signal; absent → manual sink-tracing, flagged "scanners not run". On a Hotwire app,
+the hotwire-rails-toolkit auth + stream linters add two encoded vuln classes (user enumeration, stream
+eavesdropping) the generic scanners miss — `audit_token_auth` assumes a DB-backed token design, so on Devise/
+other auth treat its output as advisory.
 
 ### `/dte-debug` — root-cause bug fix
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
@@ -116,8 +122,11 @@ Needs a runnable repro before and after. No AppSignal → logs/local repro for p
 ### `/dte-migrate` — safe upgrade / schema-data migration
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| `dte-arc-plan`/`ce-plan` + `ce-work` | majestic `gemfile-upgrade`, `gemfile-organize`, `database-admin`, `database-optimizer`, `gem-research` | `dte-loop` (run the stepwise plan autonomously) |
+| `dte-arc-plan`/`ce-plan` + `ce-work` | majestic `gemfile-upgrade`, `gemfile-organize`, `database-admin`, `database-optimizer`, `gem-research`, **hotwire-rails-toolkit** (`upgrade_audit` + LazyRouteSet flake detector — for a Rails 7→8 bump) | `dte-loop` (run the stepwise plan autonomously) |
 Every step reversible + gate-green (incl. migrate↔rollback round-trip). No data migration without a tested rollback.
+For a **Rails 7→8** upgrade specifically, run hotwire-rails-toolkit's `upgrade_audit` (version/defaults/risky-gem
+pre-flight) and `lint_route_test_helper` (the intermittent `LazyRouteSet` route-test flake that hides behind
+single green runs) as part of the readiness + verify steps.
 
 ### `/dte-pm` — goal → tracked, sequenced issues
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
