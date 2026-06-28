@@ -1,0 +1,25 @@
+DEPENDENCIES.md
+  s_a526102195a0a2::t_92a4ad66cda369 60-62
+  s_a526102195a0a2::t_f9126101102b92 19-20
+  s_a526102195a0a2::t_686e13b22b665a 43-44
+.claude-plugin/marketplace.json
+  s_a526102195a0a2::t_68a6d511293973 4
+.claude-plugin/plugin.json
+  s_a526102195a0a2::t_7fa9acba10f04a 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "8aebbc55fbf5bcfec5fbcb0e83dad23071d96d47",
+  "prompts": {},
+  "sessions": {
+    "s_a526102195a0a2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aafbb10f-22c1-4c10-99ee-920c290685ff",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
