@@ -19,7 +19,13 @@ things: **is it covered, is the test good, and does it actually catch a bug if o
 ## Procedure (per target)
 1. **Coverage.** Run the suite under **SimpleCov** (if present) → uncovered lines/branches for the target.
    If SimpleCov is absent, note it and fall back to mapping tests→code by name/reference.
-2. **Quality lens** (read the tests, don't just count them) — flag:
+2. **Quality lens** (read the tests, don't just count them).
+   **Deterministic smell pre-pass (Optional ⚪):** if the `rails-test-smell-checker` is available, run it
+   on the target FIRST — a fast, no-LLM static pass over `test/`+`spec/` (reads Minitest AND RSpec) that
+   flags high-confidence smells with `file:line`: `sleep` in system tests, missing `disable_net_connect!`,
+   stubbing the SUT, `has_css?`/`has_content?` inside an assertion, plus caveated heuristics (Mystery
+   Guest `let!`/`before` overuse). Consume its output as confirmed findings, then read deeper for what a
+   static pass can't see. Skip with a note if not installed. Then flag:
    - **Weak assertions** — `assert true`, asserting a mock was called and nothing else, snapshot-only.
    - **Over-mocking** — every collaborator stubbed, so the test proves logic *in isolation* but nothing
      about the real interaction. Require ≥1 integration test through the real callback/middleware chain.

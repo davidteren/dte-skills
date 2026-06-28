@@ -21,6 +21,13 @@ not fix anything (hand off to `dte-arc-plan` / `dte-arc-work`).
    load-bearing factual claims** — file/class counts, `require` usage, boot/`zeitwerk:check`, "X already
    does Y", "zero of Z" — and **flag every mismatch**. Don't trust the analysis that wrote the plan; the
    classification error you catch here is the file the migration would otherwise move wrong.
+1b. **Deterministic layer-boundary pre-pass (Optional ⚪).** If the `layer-boundary-lint` checker is
+   available, run it on the target FIRST — a fast, exact, no-LLM grep gate for the layering violations
+   `layered-rails` only describes in prose (`Current.` in models, `request`/`params` in the domain layer
+   incl. interactors, raw queries in controllers/views, I/O in `after_*` callbacks, off-layer `Current`
+   writes). It emits `file:line` + the rule; feed those into the report so the LLM lenses (step 2) confirm
+   and expand rather than re-derive. Grounds the review with reproducible facts before the subjective pass.
+   Skip with a note if not installed.
 2. **Run the lenses in parallel** (one sub-agent each; collect structured findings):
    - `/layered-rails` → `analyze-callbacks`, `analyze-gods`, `analyze-services` + `layered-rails-reviewer`
      (fat models/controllers, god objects, callback-heavy operations, layer leaks).

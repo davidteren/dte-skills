@@ -35,8 +35,12 @@ a *validated* roadmap — its whole point.
 ### `/dte-arc-review` — architectural findings
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| layered-rails **or** intent-engineering (`ie-audit`) | majestic-rails, ponytail | Augment, cubic |
-Needs at least one architecture lens. With both layered-rails and ie-audit it cross-checks.
+| layered-rails **or** intent-engineering (`ie-audit`) | majestic-rails, ponytail | Augment, cubic, **layer-boundary-lint** (deterministic layer-violation pre-pass) |
+Needs at least one architecture lens. With both layered-rails and ie-audit it cross-checks. When
+**layer-boundary-lint** is present, run it FIRST as a no-LLM grep gate (Current-in-models, request/params
+in the domain incl. interactors, raw queries in controllers/views, I/O in `after_*` callbacks) → `file:line`
+facts that ground the lenses. (Incubating in `Rails_Skills_Analysis/adoption/skills/`; not yet a published
+plugin — path-referenced, skipped-with-a-note when absent.)
 
 ### `/dte-deep-reviewer` — PR / branch / diff review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
@@ -49,7 +53,11 @@ Stimulus/Turbo/Hotwire Native, run the **hotwire-rails-toolkit** checkers first 
 ### `/dte-test-auditor` — test value / quality / coverage
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| a test framework + SimpleCov (coverage) | compound-engineering (testing persona), rails-testing, majestic `minitest-coder` | a mutation tester (`mutant` or **brutus**) |
+| a test framework + SimpleCov (coverage) | compound-engineering (testing persona), rails-testing, majestic `minitest-coder` | a mutation tester (`mutant` or **brutus**), **rails-test-smell-checker** (deterministic smell pre-pass) |
+When **rails-test-smell-checker** is present, run it FIRST — a no-LLM static pass (Minitest AND RSpec)
+flagging high-confidence smells (`sleep` in system tests, missing `disable_net_connect!`, stubbing the SUT,
+`has_css?` inside an assertion) with `file:line`; the quality lens then reads deeper. (Incubating in
+`Rails_Skills_Analysis/adoption/skills/`; not yet a published plugin — skipped-with-a-note when absent.)
 Coverage + quality run without mutation; the "does a test catch a bug" signal needs a mutation tester
 (flagged as not-run when absent).
 

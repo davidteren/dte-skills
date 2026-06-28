@@ -1,6 +1,6 @@
 {
   "name": "dte-skills",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "dte-* orchestration skills that compose the existing toolchain (Augment context retrieval, intent-engineering, compound-engineering, layered-rails, majestic, ponytail, cubic, MemPalace) for architectural review, planning, deep review, test-quality audit, the full review-plan-work-review cycle, tooling scans, autonomous gated loops, UX/front-end, full-stack features, performance, specs, security sweeps, debugging, and migrations. Each skill can loop over a list of targets.",
   "author": { "name": "David Teren" },
   "keywords": ["rails", "review", "architecture", "planning", "orchestration", "loop", "ux", "security", "performance", "dte"]
