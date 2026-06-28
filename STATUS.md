@@ -84,6 +84,11 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
   findings, incl. **2 P1 a11y bugs the original ARIA commit missed** (Space-key page-scroll on the
   `role=button` div with no `preventDefault`; the `card` utility's `outline` suppressing the keyboard focus
   ring). Caveat (2) `lint_turbo_streams` gap stays open as hotwire-rails-toolkit issue #1.
+  **Bugs filed (2026-06-28):** `miela_app` **#606** (Space-key page-scroll, WCAG 2.1.1) + **#607** (missing
+  focus ring, WCAG 2.4.7) — labels `Bug Fix`/`ui`/`Phase 5`, plain-language What/Why/How bodies, each with a
+  copy-paste **`/dte-debug` fix command attached as a comment** (root cause + file:line + exact fix + repro→
+  regression-test, gate `bin/rails test && bin/rails test:system`). Full chain proven: FE-lens → real bug →
+  tracked issue → executable fix command.
 
 ---
 
