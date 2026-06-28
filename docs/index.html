@@ -399,11 +399,11 @@ const SKILLS = [
 
   { id:"dte-pwa", cat:"build", writes:true,
     blurb:"Make a Rails app installable and offline — on Rails 8 native PWA.",
-    does:"Wires Rails 8's built-in PWA scaffolding — manifest, service worker, routes — rather than hand-rolling one, then builds accessible install and offline/cached states with the ui.sh family and frontend-design, and verifies with a Lighthouse PWA audit. Won't cache authenticated responses or white-screen offline.",
-    output:"Installable app — manifest + SW + Lighthouse PWA pass",
+    does:"Wires Rails 8's built-in PWA scaffolding — manifest, service worker, routes — rather than hand-rolling one, then builds accessible install and offline/cached states with the ui.sh family and frontend-design, and verifies installability via the Chrome DevTools Application panel (Lighthouse dropped the PWA category in v12). Honors an existing deliberate service worker; won't cache authenticated responses or white-screen offline.",
+    output:"Installable app — manifest + SW + Application-panel installability check",
     usage:"/dte-pwa",
     triggers:["make this a PWA / installable","add a web app manifest or service worker","work offline / add to home screen","installable web app"],
-    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","Lighthouse"] },
+    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","chrome-devtools (Application panel)"] },
 
   { id:"dte-ux", cat:"design", writes:true,
     blurb:"Designer / UX-UI specialist — review AND build front-end.",
@@ -563,7 +563,7 @@ const FLOWS = [
     desc:"Turn a one-line idea into a <b>validated spec</b> — scope, acceptance criteria, edge cases — then plan and build it. The what before the how.",
     steps:[["dte-spec","idea → validated PRD"],["dte-arc-plan","validated plans"],["dte-arc-work","build · gate"]] },
   { label:"Make it installable",
-    desc:"Make a Rails app <b>installable and offline</b> on Rails 8's native PWA — manifest and service worker wired, then accessible install and offline states, verified with a Lighthouse PWA audit.",
+    desc:"Make a Rails app <b>installable and offline</b> on Rails 8's native PWA — manifest and service worker wired, then accessible install and offline states, verified via the Chrome DevTools Application panel.",
     steps:[["dte-pwa","manifest + service worker"],["dte-ux","install / offline UI"]] },
   { label:"Plan & track",
     desc:"Shape a fuzzy idea into a <b>validated spec</b>, file it as sequenced, tracked issues, then plan each for build — the what, the backlog, the how.",

@@ -1,6 +1,6 @@
 ---
 name: dte-pwa
-description: Make a Rails app installable and offline-capable — web app manifest, service worker, install prompt, offline/cache states, and (optionally) push — built on Rails 8's native PWA support, not a hand-rolled service worker. Composes Rails 8 native PWA (app/views/pwa/manifest.json.erb + service-worker.js + the routes), the ui.sh family + frontend-design for install/offline UI, ie-experience-reviewer for the offline UX, and a Lighthouse PWA audit. Use when the user says "make this a PWA", "make it installable", "add a web app manifest / service worker", "work offline", "add to home screen", or "installable web app". Loops over a list of apps/surfaces. Not for general front-end work (use dte-ux) or native mobile (Hotwire Native is a different toolkit).
+description: Make a Rails app installable and offline-capable — web app manifest, service worker, install prompt, offline/cache states, and (optionally) push — built on Rails 8's native PWA support, not a hand-rolled service worker. Composes Rails 8 native PWA (app/views/pwa/manifest.json.erb + service-worker.js + the routes), the ui.sh family + frontend-design for install/offline UI, ie-experience-reviewer for the offline UX, and a Chrome DevTools Application-panel installability check. Use when the user says "make this a PWA", "make it installable", "add a web app manifest / service worker", "work offline", "add to home screen", or "installable web app". Loops over a list of apps/surfaces. Not for general front-end work (use dte-ux) or native mobile (Hotwire Native is a different toolkit).
 ---
 
 # dte-pwa — installable, offline-capable Rails app (on Rails 8 native PWA)
@@ -38,10 +38,18 @@ correctly and wires the install/offline UX.
 4. **Install + offline UI.** Use the **ui.sh** family + **frontend-design** for the install prompt/affordance
    and the **offline / cached / stale states** (an app that white-screens offline isn't a PWA). Real
    loading/empty/error/offline states, accessible.
-5. **Verify it's actually a PWA (runnable signal).** Run a **`lighthouse_audit`** (chrome-devtools) — checks
-   installability, manifest, SW registration, offline. Run **`ie-experience-reviewer`** over the install +
-   offline UX. Prefer the Lighthouse PWA score over prose; state if no browser was available.
-6. **Gate.** App boots, manifest validates, SW registers without console errors, Lighthouse PWA criteria pass.
+5. **Verify it's actually a PWA (runnable signal).** **Note: Lighthouse removed the standalone PWA category
+   in v12 — there is no "PWA score" anymore; don't promise one.** Verify installability the current way:
+   the Chrome DevTools **Application panel** — *Manifest* (parsed, no errors, icons resolve) + *Service
+   Workers* (registered + activated) — which surfaces the installability verdict and the "not installable"
+   reasons. Add a **`lighthouse_audit`** run for the **best-practices** + **accessibility** categories
+   (manifest/console-error signals live there now). If no browser (e.g. chrome-devtools busy/headless), fall
+   back to the manual HTTP checklist — manifest route returns valid JSON, SW route returns the worker, icons
+   200, layout links the manifest + registers the SW — and flag the verdict **unmeasured-by-browser**. Run
+   **`ie-experience-reviewer`** over the install + offline UX.
+6. **Gate.** App boots, manifest route returns valid JSON, SW registers without console errors, icons resolve,
+   and the Application-panel installability verdict is green (or the manual checklist passes with the
+   browser-unmeasured note).
 
 ## For a list of apps/surfaces
 One sub-agent per app through 1–6, then a roll-up noting each app's PWA score + the gaps (missing icons,
@@ -54,5 +62,5 @@ no offline fallback, SW scope).
 
 ## Done when
 The app has a valid manifest + a deliberate service worker (both wired via Rails routes), accessible
-install + offline UI with real states, and a **Lighthouse PWA pass** (or an explicit manual-checklist note),
-with a gate-green boot.
+install + offline UI with real states, and a **green Application-panel installability verdict** (or an
+explicit manual-checklist note when no browser is available), with a gate-green boot.

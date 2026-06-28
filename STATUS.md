@@ -6,7 +6,7 @@ _Living tracker for the plugin. Last updated: 2026-06-28._
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.3**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.4.6**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
@@ -66,8 +66,12 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
   correctly-configured installable PWA** (manifest + icons + maskable + SW registered, both layouts) needing
   **zero changes** — and its SW deliberately skips offline caching (a `respondWith` once broke file
   downloads). Surfaced a real skill gap → **v1.4.3** added a step-1 *honor-an-existing-deliberate-SW* guard +
-  a `respondWith`-vs-downloads warning to `dte-pwa`. Lighthouse not booted (static checklist conclusive);
-  live audit optional.
+  a `respondWith`-vs-downloads warning to `dte-pwa`. **Re-run on 1.4.3 (2026-06-28):** guard fired correctly
+  → "already installable, zero changes" (the old path would have re-broken downloads). **Second finding when
+  trying for a live number:** Lighthouse **removed the standalone PWA category in v12** — there is no "PWA
+  score" anymore → **v1.4.6** rewrote `dte-pwa` step 5/6 to verify via the **Chrome DevTools Application
+  panel** (Manifest + Service Workers installability verdict) + best-practices/accessibility Lighthouse +
+  manual HTTP fallback, and dropped the dead "Lighthouse PWA pass" claim (also fixed on the site).
 - ✅ **`dte-skill-audit` first run** — done 2026-06-28 (`docs/reviews/skill-audit-2026-06-28.md`): suite
   9/10 → **10/10** after v1.4.1 applied the 1 🟠 + 3 🟡 wording/boundary fixes.
 - ✅ **Auto-pull the FE lens** — **partially confirmed by dogfood** (2026-06-28): ran `dte-deep-reviewer`
