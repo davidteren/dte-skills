@@ -72,7 +72,8 @@
   [data-theme="dark"] .btn-primary{color:#0a0a0c}
   @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{color:#0a0a0c}}
   .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
-  .install{font-family:var(--font-mono);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:28px auto 0;max-width:560px;text-align:left;box-shadow:var(--shadow-sm)}
+  .install{position:relative;font-family:var(--font-mono);font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 56px 14px 18px;margin:28px auto 0;max-width:560px;text-align:left;box-shadow:var(--shadow-sm),var(--ring)}
+  .install-copy{position:absolute;top:10px;right:10px}
   .install .c{color:var(--emerald)}.install .d{color:var(--text-muted)}
 
   .stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:30px}
@@ -203,6 +204,7 @@
       <a class="btn btn-ghost" href="#catalog">Browse the skills ↓</a>
     </div>
     <div class="install anim" style="--i:4">
+      <button class="copy install-copy" id="install-copy" type="button">Copy</button>
       <span class="d"># add &amp; install</span><br>
       <span class="c">claude</span> plugin marketplace add davidteren/dte-skills<br>
       <span class="c">claude</span> plugin install dte-skills@dte-skills-marketplace
@@ -590,6 +592,16 @@ tabs.addEventListener('click',e=>{
   renderFlow(+btn.dataset.i);
 });
 renderFlow(0);
+
+/* hero install copy */
+const INSTALL_CMD = "claude plugin marketplace add davidteren/dte-skills\nclaude plugin install dte-skills@dte-skills-marketplace";
+const ic = document.getElementById('install-copy');
+ic.addEventListener('click',()=>{
+  navigator.clipboard.writeText(INSTALL_CMD).then(()=>{
+    ic.textContent='Copied ✓'; ic.classList.add('done');
+    setTimeout(()=>{ic.textContent='Copy'; ic.classList.remove('done');},1400);
+  }).catch(()=>{ic.textContent='Press ⌘C';});
+});
 
 /* theme */
 (function(){var s=localStorage.getItem('dte-theme');if(s)document.documentElement.setAttribute('data-theme',s);
