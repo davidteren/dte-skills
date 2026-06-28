@@ -1,6 +1,6 @@
 ---
 name: dte-tooling-scan
-description: Mine session history and recent work to recommend which tools, skills, plugins, or agents to adopt next — and flag overlap with what is already installed. Composes ce-sessions (prior-session synthesis), MemPalace history/knowledge-graph, the overlap logic from the skill-vet design, and light web research for candidates. Use when the user asks "what tools should we add", "scan our history for gaps", "what are we missing", "what would help based on what we do", or "tooling review". Optional loop over time windows or topics. Produces a recommendations doc; it does not install anything.
+description: Mine session history and recent work to recommend which tools, skills, plugins, or agents to adopt next — and flag overlap with what is already installed. Composes ce-sessions (prior-session synthesis), MemPalace history/knowledge-graph, the overlap logic from the skill-vet design, and light web research for candidates. Use when the user asks "what tools should we add", "scan our history for gaps", "what are we missing", "what would help based on what we do", or "tooling review". Optional loop over time windows or topics. Produces a recommendations doc; it does not install anything. Not for reviewing code or a PR (use dte-deep-reviewer), app architecture (use dte-arc-review), or auditing the dte-* skills themselves (use dte-skill-audit).
 ---
 
 # dte-tooling-scan — history → "what to adopt next" doc

@@ -42,6 +42,11 @@ every commit; a red gate after a step = **revert that step**, never push through
 Serial; or hand the stepwise plan/INDEX to **`dte-loop`** to run gated + autonomous. One branch per
 migration unless coupled. Report + pause per step.
 
+## Degrade gracefully
+- No `gemfile-upgrade`/`gemfile-organize` → bump with `bundle update <gem>` + manual Gemfile edits, noted.
+- No `database-admin`/`database-optimizer` → hand-write reversible migrations + `EXPLAIN` by hand, noted.
+- No `gem-research` → check the changelog/release notes manually; never bump blind regardless.
+
 ## Guardrails
 - **Reversible or it doesn't ship.** No data migration without a tested rollback / backfill-verify.
 - Stop-and-ask before anything irreversible (a destructive `down`, dropping a column, prod data change)

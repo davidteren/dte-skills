@@ -40,6 +40,11 @@ When the task is too big for one plan (a whole refactor, a multi-slice feature, 
    checkbox each, plus the project gate command. This is the worklist `dte-arc-work` consumes to **complete
    many**. Mirror the proven `PROGRESS.md` + gate shape.
 
+## Degrade gracefully
+- No `ce-plan` → draft the plan against the conventions output shape, **note it wasn't ce-plan-built**.
+- No `ie-validate-plan` → fall back to `ie-plan-assist`; if neither, self-review against the section
+  checklist and **flag that validation was not a separate pass** (a plan-then-validate gap, per conventions).
+
 ## Done when
 Every input has a **validated** plan in `docs/plans/` an implementer can start from (validation gaps
 resolved, not dangling). For a batch: a dependency-ordered `INDEX` worklist ready for `dte-arc-work`.

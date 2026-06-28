@@ -6,7 +6,7 @@ _Living tracker for the plugin. Last updated: 2026-06-28._
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.0**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.4.1**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
@@ -58,8 +58,8 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
 ### Open follow-ups
 - ☐ **`dte-pwa` runtime dogfood** — authored + validated, but not yet run against a real Rails 8 app
   (no app in this repo). Verify the Lighthouse PWA pass on a live app. (Logged in [GAPS.md](GAPS.md).)
-- ☐ **`dte-skill-audit` first run** — built but not yet run on the suite. Run it to get the baseline
-  health score + trigger-overlap matrix across all 18 skills.
+- ✅ **`dte-skill-audit` first run** — done 2026-06-28 (`docs/reviews/skill-audit-2026-06-28.md`): suite
+  9/10 → **10/10** after v1.4.1 applied the 1 🟠 + 3 🟡 wording/boundary fixes.
 - ☐ **Auto-pull the FE lens** — the rule + conditional step are wired; confirm in practice that reviews
   actually trigger `ie-experience-reviewer`/ui.sh on a real FE diff.
 

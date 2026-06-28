@@ -42,6 +42,11 @@ the feature ships UI) and confirm green on the current tree. It runs before ever
 One branch per feature; serial by default. Or hand the list to **`dte-loop`** to build a worklist + run it
 autonomously. Report + pause per feature.
 
+## Degrade gracefully
+- No `dte-ux`/ui.sh → build the UI with `frontend-design` + `ie-experience-reviewer` directly; note it.
+- No `dte-arc-plan` → plan via `ce-plan` alone (validation weaker); no `dte-deep-reviewer` → verify with
+  `ce-code-review`/`ie-review`. State any missing layer-verifier — never ship a layer unverified silently.
+
 ## Guardrails
 - **Both layers or it's not done.** A feature with a working back-end and an untested/inaccessible UI (or
   vice-versa) fails the bar — say so, don't ship half.
