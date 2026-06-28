@@ -509,6 +509,18 @@ const FLOWS = [
   { label:"Run a batch",
     desc:"Many plans, reviews, or bugs? <b>dte-loop</b> front-loads every decision and hands back one command — each item on its own branch, sequential, gated.",
     steps:[["dte-loop","worklist + command"],["dte-arc-plan","plan each item"],["dte-arc-work","one branch each"]] },
+  { label:"Fix a bug",
+    desc:"<b>Root cause, not symptom.</b> Reproduce the bug, trace it to the shared path every caller routes through, fix it once, then prove it with the repro plus a regression test.",
+    steps:[["dte-debug","repro → root cause → fix"],["dte-deep-reviewer","verify the fix"]] },
+  { label:"Lock it down",
+    desc:"Trace real vulnerabilities to a <b>source→sink path</b> or a scanner hit — then remediate the must-fix set, planned and gated, before it ships.",
+    steps:[["dte-security-sweep","traced vulns"],["dte-arc-plan","plan remediations"],["dte-arc-work","apply · gate"]] },
+  { label:"Upgrade safely",
+    desc:"<b>Small, reversible, gated steps.</b> Research what breaks, bump one thing at a time, and run a migrate↔rollback round-trip before every commit — never one giant blind bump.",
+    steps:[["dte-migrate","research + reversible steps"],["dte-arc-work","gate each step"]] },
+  { label:"Spec it out",
+    desc:"Turn a one-line idea into a <b>validated spec</b> — scope, acceptance criteria, edge cases — then plan and build it. The what before the how.",
+    steps:[["dte-spec","idea → validated PRD"],["dte-arc-plan","validated plans"],["dte-arc-work","build · gate"]] },
 ];
 
 const tabs = document.getElementById('tabs');
