@@ -70,7 +70,7 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
   live audit optional.
 - ✅ **`dte-skill-audit` first run** — done 2026-06-28 (`docs/reviews/skill-audit-2026-06-28.md`): suite
   9/10 → **10/10** after v1.4.1 applied the 1 🟠 + 3 🟡 wording/boundary fixes.
-- ◐ **Auto-pull the FE lens** — **partially confirmed by dogfood** (2026-06-28): ran `dte-deep-reviewer`
+- ✅ **Auto-pull the FE lens** — **partially confirmed by dogfood** (2026-06-28): ran `dte-deep-reviewer`
   on `miela_app`'s Hotwire/Stimulus slice; the **hotwire-rails-toolkit checker pre-pass fired and caught
   the one real finding** (`search_form` timer leak) before the LLM lens. Two caveats remain: (1) the session
   loaded the **1.2.0** skill body, so the checkers ran by explicit instruction, not the `conventions.md`
@@ -78,6 +78,12 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
   its own; (2) the run surfaced a real checker gap — `lint_turbo_streams` is blind to controller-response
   `*.turbo_stream.erb` templates → filed as hotwire-rails-toolkit **issue #1**. Review doc:
   `miela_app:docs/reviews/deep-review-hotwire-slice-2026-06-28.md`.
+  **Caveat (1) resolved 2026-06-28 (≥1.4.2 session):** on a real FE diff (`miela_app@fc2fec7`, an ARIA
+  change) the FE-file detector fired the **experience lens autonomously** (4 FE files detected; a BE-only
+  diff `@7a746a6` correctly skipped — both branches proven), and the lens returned real codebase-grounded
+  findings, incl. **2 P1 a11y bugs the original ARIA commit missed** (Space-key page-scroll on the
+  `role=button` div with no `preventDefault`; the `card` utility's `outline` suppressing the keyboard focus
+  ring). Caveat (2) `lint_turbo_streams` gap stays open as hotwire-rails-toolkit issue #1.
 
 ---
 
