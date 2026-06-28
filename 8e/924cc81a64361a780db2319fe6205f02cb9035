@@ -1,0 +1,20 @@
+docs/index.html
+  s_be4564f736f0f2::t_024ba34d6d2cf0 370
+  s_be4564f736f0f2::t_13337a1093eaef 418
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "8e924cc81a64361a780db2319fe6205f02cb9035",
+  "prompts": {},
+  "sessions": {
+    "s_be4564f736f0f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08b6680b-b92d-4a12-9966-443986abd36f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
