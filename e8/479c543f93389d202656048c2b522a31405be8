@@ -1,0 +1,27 @@
+STATUS.md
+  s_5f2c0b20dd2195::t_61cb0b8c2b0dd6 65-70
+  s_5f2c0b20dd2195::t_ef5eb59b6576e3 9
+.claude-plugin/marketplace.json
+  s_5f2c0b20dd2195::t_6bf0338320c217 4
+skills/dte-pwa/SKILL.md
+  s_5f2c0b20dd2195::t_04d0a50b1caa25 20-27
+  s_5f2c0b20dd2195::t_36920fea655f9b 31-32,34-37
+.claude-plugin/plugin.json
+  s_5f2c0b20dd2195::t_27af08d453c399 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "e8479c543f93389d202656048c2b522a31405be8",
+  "prompts": {},
+  "sessions": {
+    "s_5f2c0b20dd2195": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8ddb3555-0c10-40f7-93bc-ed3970461a05",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
