@@ -160,6 +160,8 @@
   .card-meta{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:2px}
   .card-meta .m{display:inline-flex;align-items:center;gap:4px}
   .card-meta .writes{color:var(--emerald)}
+  .card-meta .verified{color:var(--emerald);font-weight:700;background:var(--emerald-dim);padding:1px 8px;border-radius:20px}
+  .out.vnote{border-left-color:var(--emerald)}
   .noresults{text-align:center;color:var(--text-muted);padding:40px 0;font-size:15px;display:none}
 
   /* detail modal */
@@ -419,7 +421,8 @@ const SKILLS = [
     output:"Installable app — manifest + SW + Application-panel installability check",
     usage:"/dte-pwa",
     triggers:["make this a PWA / installable","add a web app manifest or service worker","work offline / add to home screen","installable web app"],
-    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","chrome-devtools (Application panel)"] },
+    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","chrome-devtools (Application panel)"],
+    verified:{ badge:"✓ verified live · LH 100", note:"Dogfooded on a real Rails 8 app (miela_app), 2026-06-28: Chrome beforeinstallprompt FIRED (the authoritative installable verdict), service worker activated + controlling, manifest valid (standalone, maskable icon). Lighthouse mobile = 100 across accessibility / best-practices / SEO. Installable without offline caching — and the skill's honor-existing-SW guard correctly produced \"zero changes\"." } },
 
   { id:"dte-ux", cat:"design", writes:true,
     blurb:"Designer / UX-UI specialist — review AND build front-end.",
@@ -474,6 +477,7 @@ function cardHTML(s){
     <div class="card-meta">
       <span class="m ${s.writes?'writes':''}">${s.writes?'✎ writes code':'◇ produces a doc'}</span>
       <span class="m">⛓ ${s.composes.length} tools</span>
+      ${s.verified?`<span class="m verified">${esc(s.verified.badge)}</span>`:''}
     </div>
   </button>`;
 }
@@ -513,6 +517,7 @@ function openModal(id){
       <div class="blk"><h4>Trigger it when you say</h4><div class="trig">${s.triggers.map(t=>`<span class="t">${esc(t)}</span>`).join('')}</div></div>
       <div class="blk"><h4>Composes — depends on</h4><div class="deps">${s.composes.map(depHTML).join('')}</div></div>
       <div class="blk"><h4>Output</h4><div class="out ${s.writes?'':'read'}">${s.writes?'✎ ':'◇ '}${esc(s.output)}</div></div>
+      ${s.verified?`<div class="blk"><h4>Verified live</h4><div class="out vnote">✓ ${esc(s.verified.note)}</div></div>`:''}
     </div>`;
   modal.querySelector('.modal-close').addEventListener('click',closeModal);
   const copyBtn = modal.querySelector('.copy');
