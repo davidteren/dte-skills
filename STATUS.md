@@ -6,7 +6,7 @@ _Living tracker for the plugin. Last updated: 2026-06-28._
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.2**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.4.3**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
@@ -62,8 +62,12 @@ Status: ☐ todo · ◐ designed/parked · ▶ next.
 _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-lens-in-reviews enhancement.)_
 
 ### Open follow-ups
-- ☐ **`dte-pwa` runtime dogfood** — authored + validated, but not yet run against a real Rails 8 app
-  (no app in this repo). Verify the Lighthouse PWA pass on a live app. (Logged in [GAPS.md](GAPS.md).)
+- ✅ **`dte-pwa` runtime dogfood** — run on `miela_app` (Rails 8.1.3) 2026-06-28. Found it **already a
+  correctly-configured installable PWA** (manifest + icons + maskable + SW registered, both layouts) needing
+  **zero changes** — and its SW deliberately skips offline caching (a `respondWith` once broke file
+  downloads). Surfaced a real skill gap → **v1.4.3** added a step-1 *honor-an-existing-deliberate-SW* guard +
+  a `respondWith`-vs-downloads warning to `dte-pwa`. Lighthouse not booted (static checklist conclusive);
+  live audit optional.
 - ✅ **`dte-skill-audit` first run** — done 2026-06-28 (`docs/reviews/skill-audit-2026-06-28.md`): suite
   9/10 → **10/10** after v1.4.1 applied the 1 🟠 + 3 🟡 wording/boundary fixes.
 - ☐ **Auto-pull the FE lens** — the rule + conditional step are wired; confirm in practice that reviews

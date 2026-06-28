@@ -17,15 +17,24 @@ correctly and wires the install/offline UX.
   needs the manifest + SW added by hand (note it).
 
 ## Procedure (per app)
-1. **Enable the native PWA scaffolding.** Uncomment the `pwa` routes in `config/routes.rb`
-   (`manifest` + `service_worker`). Confirm `app/views/pwa/manifest.json.erb` + `service-worker.js` exist
-   (Rails 8 generates them); if pre-8, create them from the Rails 8 template.
+1. **Assess what already exists — and honor it (do this BEFORE changing anything).** Read the current
+   `manifest.json.erb`, `service-worker.js`, the `pwa` routes, and the SW **registration** call. **If a
+   service worker already exists with a documented design choice** — e.g. a comment explaining why it
+   deliberately does *not* intercept fetches / cache offline — **respect it; do not overwrite it.** A
+   deliberate **installable-only** SW is a valid, finished state. **Offline caching is opt-in, never
+   assumed.** Many apps are already correctly installable and need **zero changes** — say so and stop, don't
+   manufacture work. Then enable the native scaffolding only where it's missing: uncomment the `pwa` routes
+   in `config/routes.rb`; confirm the Rails 8 files exist (pre-8 → create them from the Rails 8 template).
 2. **Fill the manifest** — `name`/`short_name`, `display: standalone`, `start_url`, `theme_color` +
    `background_color` (from the design tokens), and a full **icon set** (incl. maskable). Use the project's
    real brand, not placeholders.
-3. **Write the service worker deliberately** — a sane cache strategy (precache the app shell + offline
+3. **Write the service worker deliberately** — **only if offline behaviour is actually wanted and step 1
+   found no deliberate decision against it.** A sane cache strategy (precache the app shell + offline
    fallback; network-first for data). Keep it minimal; `// ponytail:`-mark the cache ceiling. Don't cache
-   authenticated/sensitive responses.
+   authenticated/sensitive responses — **and never let a `respondWith` swallow file-download / attachment
+   navigations** (a classic regression: the worker re-fetches the attachment instead of letting the browser
+   stream it, so the download never starts). Scope any `respondWith` so attachment responses reach the
+   browser untouched.
 4. **Install + offline UI.** Use the **ui.sh** family + **frontend-design** for the install prompt/affordance
    and the **offline / cached / stale states** (an app that white-screens offline isn't a PWA). Real
    loading/empty/error/offline states, accessible.
