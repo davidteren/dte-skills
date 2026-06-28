@@ -22,7 +22,7 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 | cubic | cubic | `/run-review`, `/scan`, `codebase-context`, `wiki` |
 | Augment | auggie MCP | semantic `codebase-retrieval` |
 | MemPalace | mempalace MCP | history, knowledge-graph, decisions |
-| mutation tester | `mutant` (licensed) or **brutus** (homegrown) | "does a test fail when code breaks" signal |
+| mutation tester | `mutant` (licensed) or **mutineer** (homegrown) | "does a test fail when code breaks" signal |
 
 ## Per-skill matrix
 
@@ -54,7 +54,7 @@ Stimulus/Turbo/Hotwire Native, run the **hotwire-rails-toolkit** checkers first 
 ### `/dte-test-auditor` — test value / quality / coverage
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| a test framework + SimpleCov (coverage) | compound-engineering (testing persona), rails-testing, majestic `minitest-coder` | a mutation tester (`mutant` or **brutus**), **rails-test-smell-checker** (deterministic smell pre-pass) |
+| a test framework + SimpleCov (coverage) | compound-engineering (testing persona), rails-testing, majestic `minitest-coder` | a mutation tester (`mutant` or **mutineer**), **rails-test-smell-checker** (deterministic smell pre-pass) |
 When **rails-test-smell-checker** is present, run it FIRST — a no-LLM static pass (Minitest AND RSpec)
 flagging high-confidence smells (`sleep` in system tests, missing `disable_net_connect!`, stubbing the SUT,
 `has_css?` inside an assertion) with `file:line`; the quality lens then reads deeper. Published in
@@ -160,5 +160,5 @@ Self-contained + read-only — reads the skills, AGENTS.md, and DEPENDENCIES.md;
 
 - **Minimum useful set:** compound-engineering + intent-engineering (+ layered-rails for the Rails
   architecture skills). That unlocks plan/validate/work/review.
-- **Full Rails set:** add majestic-rails, rails-testing, ponytail, and a mutation tester (mutant or brutus).
+- **Full Rails set:** add majestic-rails, rails-testing, ponytail, and a mutation tester (mutant or mutineer).
 - **Best-in-class:** also Augment (context), cubic (team patterns), MemPalace (history).
