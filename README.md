@@ -1,5 +1,7 @@
 # dte-skills
 
+### 🔗 [**davidteren.github.io/dte-skills**](https://davidteren.github.io/dte-skills/) — searchable skill catalog, flow recipes & copy-paste quick-starts
+
 **A [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin of orchestration skills that
 compose the AI-engineering tools you already have — intent-engineering, compound-engineering,
 layered-rails, majestic, ponytail, cubic — into disciplined `review → plan → work → audit` flows for
