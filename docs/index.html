@@ -325,7 +325,8 @@ const SKILLS = [
     output:"Findings doc (confirmed vs disputed)",
     usage:"/dte-deep-reviewer <PR# | branch-name | path>",
     triggers:["review this PR / branch / diff","deep review","check this codebase","hand over PR numbers or branch names"],
-    composes:["ce-code-review","ie-review","majestic rails-code-review","cubic run-review/scan"] },
+    composes:["ce-code-review","ie-review","majestic rails-code-review","cubic run-review/scan"],
+    verified:{ badge:"✓ live · caught 2 P1 bugs", note:"Front-end lens dogfooded on a real diff (miela_app@fc2fec7, 2026-06-28): the FE-file detector fired the experience lens autonomously and caught 2 P1 accessibility bugs the original ARIA commit missed — Space-key page-scroll and a suppressed keyboard focus ring — filed as miela_app #606 / #607." } },
 
   { id:"dte-test-auditor", cat:"review", writes:false,
     blurb:"Judge whether tests actually test anything — value, not presence.",
@@ -357,7 +358,8 @@ const SKILLS = [
     output:"Scored audit doc + overlap matrix",
     usage:"/dte-skill-audit",
     triggers:["audit the dte skills","are these skills solid","check the suite for overlap / bloat","skill-audit"],
-    composes:["AGENTS.md quality bar","references/conventions.md","claude plugin validate"] },
+    composes:["AGENTS.md quality bar","references/conventions.md","claude plugin validate"],
+    verified:{ badge:"✓ run · suite 10/10", note:"First run on all 18 skills (2026-06-28): scored each on the 7 quality-bar dimensions + a trigger-overlap matrix → suite 9/10, raised 1 high + 3 medium wording/boundary gaps, all fixed the same day → 10/10. Report: docs/reviews/skill-audit-2026-06-28.md." } },
 
   { id:"dte-arc-plan", cat:"plan", writes:false,
     blurb:"Findings / spec / bug → concrete, validated implementation plan(s).",
@@ -438,7 +440,8 @@ const SKILLS = [
     output:"Worklist doc + the command to paste",
     usage:"/dte-loop <plan-INDEX path | list of items>",
     triggers:["loop over these / run these autonomously","implement all these plans, each on its own branch","set up a loop","what command do I run to loop this"],
-    composes:["/loop","dte-arc-plan","dte-arc-work","dte-deep-reviewer","dte-arc-review"] },
+    composes:["/loop","dte-arc-plan","dte-arc-work","dte-deep-reviewer","dte-arc-review"],
+    verified:{ badge:"✓ dogfooded · shipped 4", note:"Dogfooded on this very repo (2026-06-28): built the backlog worklist, front-loaded every decision, and ran straight through — shipping dte-pm, dte-pwa, dte-skill-audit and the front-end-lens enhancement, each gated. The autonomous-loop driver, proven on its own suite." } },
 
   { id:"dte-tooling-scan", cat:"orchestrate", writes:false,
     blurb:"Mine history → what tooling to adopt next, overlap-aware.",
