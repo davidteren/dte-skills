@@ -229,6 +229,7 @@
     </div>
     <div class="stats anim" style="--i:5">
       <div class="stat"><div class="num" id="stat-count">18</div><div class="lab">skills</div></div>
+      <div class="stat"><div class="num" id="stat-verified" style="color:var(--emerald)">4</div><div class="lab">dogfooded</div></div>
       <div class="stat"><div class="num">5</div><div class="lab">stages</div></div>
       <div class="stat"><div class="num">∞</div><div class="lab">extendable</div></div>
     </div>
@@ -458,6 +459,7 @@ const grid = document.getElementById('grid');
 const noresults = document.getElementById('noresults');
 const qInput = document.getElementById('q');
 document.getElementById('stat-count').textContent = SKILLS.length;
+document.getElementById('stat-verified').textContent = SKILLS.filter(s=>s.verified).length;
 
 let activeCat = 'all', query = '';
 
