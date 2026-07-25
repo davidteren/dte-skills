@@ -1,0 +1,25 @@
+DEPENDENCIES.md
+  s_e77b5ea5e09d36::t_43f69923afcab0 144
+GAPS.md
+  s_e77b5ea5e09d36::t_fa57512a3a6e33 35
+docs/loops/INDEX-skills-backlog.md
+  s_e77b5ea5e09d36::t_0cca90989b399a 24
+skills/dte-pm/SKILL.md
+  s_e77b5ea5e09d36::t_adc897172c854e 3,24,40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "58ac974ac924c7bc388c149e06abd911b7ea44aa",
+  "prompts": {},
+  "sessions": {
+    "s_e77b5ea5e09d36": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85f291ab-c0a0-4250-b180-b072cc4d2d80",
+        "model": "claude-opus-5"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
