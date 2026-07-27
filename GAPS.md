@@ -32,7 +32,7 @@ step added to `dte-deep-reviewer` + `dte-arc-review` that pulls **ui.sh** + **fr
 get the baseline health score across all 18 skills.
 
 ### dte-pm (project management) — ☐ todo (carried from STATUS backlog)
-Idea/goal → tracked, broken-down work (issues), status, sequencing. Composes `dt-create-issue` / GitHub
+Idea/goal → tracked, broken-down work (issues), status, sequencing. Composes `dt-issue-create` / GitHub
 issues + `ce-plan`. Overlaps `dte-spec` (which defines the *what*) — keep dte-pm to *tracking/sequencing*.
 
 ### dte-discovery — ◐ parked (owner building in a dedicated session)

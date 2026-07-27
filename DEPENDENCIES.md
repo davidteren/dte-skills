@@ -141,7 +141,7 @@ single green runs) as part of the readiness + verify steps.
 ### `/dte-pm` — goal → tracked, sequenced issues
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| `gh` CLI (GitHub issues) **or** the project's `dt-create-issue` | compound-engineering (`ce-plan`/`ce-brainstorm` to decompose) | Augment/cubic (existing-feature context) |
+| `gh` CLI (GitHub issues) **or** the project's `dt-issue-create` | compound-engineering (`ce-plan`/`ce-brainstorm` to decompose) | Augment/cubic (existing-feature context) |
 No `gh` → writes a markdown backlog index, notes tickets weren't filed. Honors the project's What/Why/How + label taxonomy.
 
 ### `/dte-pwa` — installable / offline Rails app

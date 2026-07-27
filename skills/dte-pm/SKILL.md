@@ -1,6 +1,6 @@
 ---
 name: dte-pm
-description: Project-management — turn a goal, spec, or plan index into TRACKED, broken-down, sequenced work (GitHub issues/tickets) with status and dependency order. Composes ce-plan/ce-brainstorm to decompose, dt-create-issue (or gh issue create) to file each ticket with the plain-language What/Why/How body + labels, and produces a tracking index. Use when the user says "track this", "create issues/tickets for this", "break this into tickets", "project-manage this", "file the backlog", "sequence this work", or "what's the status/order". Loops over a list of goals. Not for defining the what (use dte-spec), the implementation plan (use dte-arc-plan), or doing the work (use dte-arc-work).
+description: Project-management — turn a goal, spec, or plan index into TRACKED, broken-down, sequenced work (GitHub issues/tickets) with status and dependency order. Composes ce-plan/ce-brainstorm to decompose, dt-issue-create (or gh issue create) to file each ticket with the plain-language What/Why/How body + labels, and produces a tracking index. Use when the user says "track this", "create issues/tickets for this", "break this into tickets", "project-manage this", "file the backlog", "sequence this work", or "what's the status/order". Loops over a list of goals. Not for defining the what (use dte-spec), the implementation plan (use dte-arc-plan), or doing the work (use dte-arc-work).
 ---
 
 # dte-pm — goal → tracked, sequenced issues
@@ -21,7 +21,7 @@ invent a tracker.
    existing INDEX/spec) to break the goal into independently-trackable work items. Don't file one giant
    ticket — file the units someone can actually pick up.
 2. **Sequence.** Order the items by dependency; assign milestone/phase labels. Mark what blocks what.
-3. **File each ticket.** Prefer the project's **`dt-create-issue`** if present (it already enforces the
+3. **File each ticket.** Prefer the project's **`dt-issue-create`** if present (it already enforces the
    What/Why/How body + label taxonomy + phase); else **`gh issue create`** with a body that **opens with the
    plain-language What / Why / How** (a non-technical PM could follow it), then the technical detail below,
    plus labels + the dependency note. Never ship a bare/purely-technical ticket.
@@ -37,7 +37,7 @@ cross-goal sequence + critical path.
 ## Degrade gracefully
 - No `gh`/GitHub access → write the backlog as a markdown index only, note tickets weren't filed.
 - No `ce-plan` → decompose by hand from the spec/goal, note the breakdown is unvalidated.
-- No `dt-create-issue` → use `gh issue create` and apply the What/Why/How + labels manually.
+- No `dt-issue-create` → use `gh issue create` and apply the What/Why/How + labels manually.
 
 ## Done when
 The goal is broken into sequenced, tracked tickets (each opening with plain-language What/Why/How + labels),

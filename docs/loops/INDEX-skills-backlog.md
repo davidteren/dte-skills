@@ -21,7 +21,7 @@ decisions: see "Assumed defaults" below
   real Lighthouse PWA audit against). Override: dogfood it against a real app later.
 - **`skill-audit` name** → went with **`dte-skill-audit`** (keeps the `dte-` prefix per AGENTS.md). Override: rename.
 - **`skill-audit` shape** → went with **read-only report** (no auto-fix of skills). Override: add a `--fix` pass later.
-- **`dte-pm` issue backend** → went with **`gh issue create`** generic + `dt-create-issue` if the target
+- **`dte-pm` issue backend** → went with **`gh issue create`** generic + `dt-issue-create` if the target
   project has it (Miela-specific). Override: wire a different tracker.
 - **Version bump** → **minor, 1.3.0 → 1.4.0** (4 new/changed skills, additive). Override: major if you consider it breaking.
 
