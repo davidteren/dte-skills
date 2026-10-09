@@ -3,7 +3,7 @@
 ### 🔗 [**davidteren.github.io/dte-skills**](https://davidteren.github.io/dte-skills/) — searchable skill catalog, flow recipes & copy-paste quick-starts
 
 **A [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin of orchestration skills that
-compose the AI-engineering tools you already have — intent-engineering, compound-engineering,
+compose the AI-engineering tools you already have — expectation-fit, compound-engineering,
 layered-rails, majestic, ponytail, cubic — into disciplined `review → plan → work → audit` flows for
 Rails.**
 
@@ -19,9 +19,9 @@ A bespoke "go refactor my app" prompt tends to: reinvent planning, critique itse
 run dark (you keep asking *"how far are we?"*), and never re-check the claims it made. `dte-skills` fixes
 that by making the discipline first-class:
 
-- **Compose, don't reinvent** — every skill invokes `/ce-plan`, `/ie-validate-plan`, `/layered-rails`, etc.
+- **Compose, don't reinvent** — every skill invokes `/ce-plan`, `/fit-validate-plan`, `/layered-rails`, etc.
 - **Plan, then validate** — real work is planned with compound-engineering's `ce-plan` and **validated**
-  with intent-engineering's `ie-validate-plan` before a line is written.
+  with expectation-fit's `fit-validate-plan` before a line is written.
 - **Verify, don't trust** — a plan's load-bearing claims ("X already does Y", "zero of Z") are checked
   against the code, not assumed.
 - **Gate + report every step** — a runnable gate before every commit; a loud report and a pause after
@@ -40,7 +40,7 @@ that by making the discipline first-class:
 | **`/dte-arc-review`** | review a slice / structure (diagnostic) | severity-ranked architectural findings |
 | **`/dte-deep-reviewer`** | review a PR / branch / diff | multi-lens, cross-model code findings |
 | **`/dte-test-auditor`** | judge a test suite's real value | coverage + quality + mutation findings |
-| **`/dte-arc-plan`** | turn findings / a spec / a bug into plan(s) | `ce-plan`-built, `ie-validate-plan`-validated plans (decomposes big work into many) |
+| **`/dte-arc-plan`** | turn findings / a spec / a bug into plan(s) | `ce-plan`-built, `fit-validate-plan`-validated plans (decomposes big work into many) |
 | **`/dte-arc-work`** | do the work, gated and looped | branches + gate-green diffs + per-phase reports |
 | **`/dte-tooling-scan`** | find what tooling to adopt next | overlap-aware adoption shortlist |
 | **`/dte-loop`** | set up an autonomous gated loop over a batch | worklist doc + the exact command to trigger it (questions front-loaded) |
@@ -94,7 +94,7 @@ functionality install these too (see [DEPENDENCIES.md](DEPENDENCIES.md) for the 
 | Tier | Plugin | Gives |
 |---|---|---|
 | **Required** | [`compound-engineering`](https://github.com/EveryInc/compound-engineering-plugin) | `ce-plan`, `ce-work`, `ce-code-review` (cross-model) |
-| **Required** | [`intent-engineering`](https://github.com/davidteren/intent-engineering) | `ie-validate-plan`, `ie-review`, `ie-audit` |
+| **Required** | [`expectation-fit`](https://github.com/davidteren/intent-engineering) | `fit-validate-plan`, `fit-review`, `fit-audit` |
 | **Required (Rails)** | [`layered-rails`](https://github.com/palkan/skills) | architecture analysis (callbacks / gods / services) |
 | **Recommended** | `majestic-rails`, `rails-testing-v8`, `ponytail` | Rails reviewers/coders · Minitest depth · the elegance pass |
 | **Optional** | Augment, cubic, MemPalace, a mutation tester | richer context · team patterns · history · mutation signal |

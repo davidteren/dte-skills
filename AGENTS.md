@@ -11,7 +11,7 @@ work. They were learned the hard way (see **Lessons** below).
 ## What this repo is
 
 A Claude Code **plugin** (`dte-skills`) of orchestration skills that **compose** the user's existing
-AI-engineering tools — intent-engineering, compound-engineering, layered-rails, majestic, ponytail,
+AI-engineering tools — expectation-fit, compound-engineering, layered-rails, majestic, ponytail,
 cubic, MemPalace, Augment — into disciplined `review → plan → work → audit` flows. The skills are
 **recipes that conduct other tools**, not reimplementations.
 
@@ -28,10 +28,10 @@ STATUS.md                                        # the project tracker (shipped 
 
 ## Core philosophy (do not regress these)
 
-1. **Compose, don't reinvent.** A skill invokes `/ce-plan`, `/ie-validate-plan`, `/layered-rails`, the
+1. **Compose, don't reinvent.** A skill invokes `/ce-plan`, `/fit-validate-plan`, `/layered-rails`, the
    ui-*/frontend-design skills, etc. If you find yourself writing review or planning *logic* into a
    SKILL.md, stop — call the tool that already does it.
-2. **Plan, then validate.** Real work is planned with `ce-plan` and validated with `ie-validate-plan`
+2. **Plan, then validate.** Real work is planned with `ce-plan` and validated with `fit-validate-plan`
    (+ other validators) before execution. Validation is a **separate pass** from drafting.
 3. **Verify, don't trust.** A plan's load-bearing claims get checked against the code, not assumed.
 4. **Gate + report every step.** A runnable gate before every commit; a loud report + pause after every
@@ -89,9 +89,9 @@ already encoded as a rule above; keep it that way:
 | What went wrong in the bespoke workflow | The rule it produced |
 |---|---|
 | Ran dark — the human asked "how far are we?" four times | **report + pause every phase** |
-| Critiqued itself in the same context/model | **validation is a separate pass** (ie-validate-plan, cross-model) |
+| Critiqued itself in the same context/model | **validation is a separate pass** (fit-validate-plan, cross-model) |
 | Asserted facts ("10 already X") nobody re-checked | **verify claims against the code** |
-| Reinvented planning + critique from scratch | **compose ce-plan / ie-validate-plan, don't reinvent** |
+| Reinvented planning + critique from scratch | **compose ce-plan / fit-validate-plan, don't reinvent** |
 | Granularity fork surfaced late, mid-loop | **surface key forks early (AskUserQuestion)** |
 | No safety net but a green boot (deploy ungated) | **runnable gate before every commit; red = revert** |
 

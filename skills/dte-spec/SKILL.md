@@ -1,6 +1,6 @@
 ---
 name: dte-spec
-description: Turn a fuzzy idea or goal into a right-sized, validated specification (PRD) — the WHAT and WHY, with scope, user stories, acceptance criteria, edge cases, and non-goals — before any planning. Composes ce-brainstorm (explore/scope the idea), ce-ideate, and ie-validate-plan (validate the spec for clarity, simplicity, predictability, UX completeness). Use when the user says "spec this out", "write a PRD", "define the requirements", "what should this do", "scope this feature", or hands a one-line idea that needs shaping. Loops over a list of ideas. Not for the HOW/implementation plan (use dte-arc-plan) or building it (use dte-feature/dte-arc-work).
+description: Turn a fuzzy idea or goal into a right-sized, validated specification (PRD) — the WHAT and WHY, with scope, user stories, acceptance criteria, edge cases, and non-goals — before any planning. Composes ce-brainstorm (explore/scope the idea), ce-ideate, and fit-validate-plan (validate the spec for clarity, simplicity, predictability, UX completeness). Use when the user says "spec this out", "write a PRD", "define the requirements", "what should this do", "scope this feature", or hands a one-line idea that needs shaping. Loops over a list of ideas. Not for the HOW/implementation plan (use dte-arc-plan) or building it (use dte-feature/dte-arc-work).
 ---
 
 # dte-spec — idea → validated spec/PRD (the WHAT, before the HOW)
@@ -26,10 +26,10 @@ validation tools; it does not invent its own requirements framework.
    - **User stories / flows** · **Acceptance criteria** (testable) · **Edge cases & failure states**
    - **UX notes** (key screens/states the feature implies) · **Open questions / assumptions**
    - **Dependencies & risks**.
-3. **Validate the spec (separate pass).** Run **`ie-validate-plan`** against the spec — clarity, simplicity
+3. **Validate the spec (separate pass).** Run **`fit-validate-plan`** against the spec — clarity, simplicity
    (no speculative scope), predictability, and **UX completeness** (states/flows/IA/accessibility decided,
    not hand-waved). It returns 0–10 ratings + gaps. **Fold the gaps back in**; a spec with unresolved
-   validation gaps is not ready. Optionally `ie-plan-assist` for a lighter advisory pass.
+   validation gaps is not ready. Optionally `fit-plan-assist` for a lighter advisory pass.
 4. **Mark readiness.** State the score and "ready for `dte-arc-plan`" — or list what's still open.
 
 ## For a list of ideas
@@ -38,7 +38,7 @@ readiness score, and dependency order (feeds `dte-loop`/`dte-arc-plan`).
 
 ## Degrade gracefully
 - No ce-brainstorm/ce-ideate → shape the spec by hand from the idea + codebase context, note it.
-- No ie-validate-plan → self-review against the section checklist, flag that validation was not a separate pass.
+- No fit-validate-plan → self-review against the section checklist, flag that validation was not a separate pass.
 
 ## Done when
 Each idea has a spec doc with the plain-language What/Why/How, scope + non-goals, testable acceptance

@@ -16,7 +16,7 @@ the way the skills check code. **Read-only** — it reports, it does not rewrite
 
 ## Per-skill checks (the quality bar, made runnable where possible)
 For each skill, score each dimension pass / weak / fail with evidence (`file:line`):
-1. **Composes, doesn't reinvent** — the body *names the tools it calls* (`/ce-plan`, `ie-*`, `ui-*`, …) and
+1. **Composes, doesn't reinvent** — the body *names the tools it calls* (`/ce-plan`, `fit-*`, `ui-*`, …) and
    contains no hand-rolled review/planning *logic*. A procedure step with no named tool is a smell.
 2. **Loops** — handles a **single target AND a list** (per the conventions "Looping" rule).
 3. **Degrades gracefully** — has a "Degrade gracefully" path naming fallbacks; never a silent skip.

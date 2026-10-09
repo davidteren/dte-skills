@@ -1,6 +1,6 @@
 ---
 name: dte-security-sweep
-description: Security review of a Rails app, a PR/diff, or a slice — find real vulnerabilities (authz gaps, injection, mass-assignment, secrets, unsafe deserialization, SSRF, CSRF, privacy/PII leaks) with evidence and ranked fixes. Composes the security-audit (whole-app posture) and security-review (PR-scoped) skills, majestic privacy-reviewer + data-integrity-reviewer, intent-engineering's predictability lens, and Brakeman/bundler-audit if present. Use when the user says "security review", "security sweep", "is this safe", "check for vulnerabilities", "audit auth/authorization", "scan for secrets/PII", or before shipping a sensitive change. Loops over a list of slices/PRs. Not for general correctness review (use dte-deep-reviewer) or architecture (use dte-arc-review).
+description: Security review of a Rails app, a PR/diff, or a slice — find real vulnerabilities (authz gaps, injection, mass-assignment, secrets, unsafe deserialization, SSRF, CSRF, privacy/PII leaks) with evidence and ranked fixes. Composes the security-audit (whole-app posture) and security-review (PR-scoped) skills, majestic privacy-reviewer + data-integrity-reviewer, expectation-fit's predictability lens, and Brakeman/bundler-audit if present. Use when the user says "security review", "security sweep", "is this safe", "check for vulnerabilities", "audit auth/authorization", "scan for secrets/PII", or before shipping a sensitive change. Loops over a list of slices/PRs. Not for general correctness review (use dte-deep-reviewer) or architecture (use dte-arc-review).
 ---
 
 # dte-security-sweep — security posture / PR review → ranked, evidence-backed findings
@@ -22,7 +22,7 @@ vuln taxonomy. Findings are evidence-backed — a real sink/source path or a sca
    **bundler-audit**/`bundle audit` for vulnerable gems, secret-scan the diff (high-entropy strings, keys).
    Prefer a scanner hit with a line number over a prose suspicion. State which scanners weren't installed.
 3. **Run the review lenses.** majestic **`privacy-reviewer`** (PII/data exposure, logging of sensitive
-   fields) + **`data-integrity-reviewer`**, and **`ie-predictability-reviewer`** (silent failures, auth
+   fields) + **`data-integrity-reviewer`**, and **`fit-predictability-reviewer`** (silent failures, auth
    that doesn't fail closed, hidden side effects on a trust boundary).
 4. **Trace each finding.** Confirm a real **source → sink** path (user input reaching SQL/HTML/system/SSRF)
    or a real missing authorization check — grep all callers, don't patch one path and leave siblings open.
@@ -36,7 +36,7 @@ exploitability, with the must-fix-before-ship items at the top and a "tools/scan
 
 ## Degrade gracefully
 - No Brakeman/bundler-audit → fall back to the review skills + manual sink tracing; flag scanners not run.
-- No security-audit/security-review skills → use ie-predictability + privacy-reviewer + Brakeman, note it.
+- No security-audit/security-review skills → use fit-predictability-reviewer + privacy-reviewer + Brakeman, note it.
 
 ## Done when
 The target has a security doc with severity-ranked, **traced** findings (source→sink or missing-authz

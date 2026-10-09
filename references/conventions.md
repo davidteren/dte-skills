@@ -4,7 +4,7 @@ Every `dte-*` skill follows these. Read this once; each skill assumes it.
 
 ## Compose, don't reinvent
 A `dte-*` skill orchestrates existing tools. It does **not** re-implement review or planning logic.
-Prefer invoking a skill (`/ce-code-review`, `/ie-review`, `/layered-rails ...`) over hand-rolling.
+Prefer invoking a skill (`/ce-code-review`, `/fit-review`, `/layered-rails ...`) over hand-rolling.
 
 ## Tool availability — detect and degrade (never silent)
 Optional tools may be absent in a given project/session. Detect, use if present, and **state in the
@@ -13,13 +13,13 @@ output** when one was unavailable. Never silently skip a step.
 | Capability | Primary | Fallback if absent |
 |---|---|---|
 | Context retrieval | Augment `codebase-retrieval` | cubic `codebase-context`/`wiki`; else Grep/Glob + read |
-| Rails code review | `/ce-code-review` (cross-model) | `/ie-review`; majestic `review:rails-code-review` |
-| Architecture | `/layered-rails` analyzers + `layered-rails-reviewer` | `/ie-audit` (architecture lens) |
-| Planning | `/ce-plan` + `/ie-validate-plan` | `/ie-plan-assist` only |
+| Rails code review | `/ce-code-review` (cross-model) | `/fit-review`; majestic `review:rails-code-review` |
+| Architecture | `/layered-rails` analyzers + `layered-rails-reviewer` | `/fit-audit` (architecture lens) |
+| Planning | `/ce-plan` + `/fit-validate-plan` | `/fit-plan-assist` only |
 | Tests | `rails-testing` + SimpleCov | majestic `minitest-coder`; coverage skipped w/ note |
 | Mutation testing | `mutant` | skip + flag "mutation not run (mutant not set up)" |
 | History/insights | MemPalace `search`/`kg`, `/ce-sessions` | skip + note |
-| Elegance pass | `ponytail` / `/ce-simplify-code` | `ie-simplicity-reviewer` |
+| Elegance pass | `ponytail` / `/ce-simplify-code` | `fit-simplicity-reviewer` |
 
 > **3.15.0 note:** the standalone `ce-*-reviewer` agents no longer exist — those reviewers are personas
 > inside `/ce-code-review`. Invoke the skill, not the old agents.
@@ -43,7 +43,7 @@ must detect front-end diffs and pull the front-end lens in:**
 - **Detect FE files** in the target/diff: `.erb`/`.haml`/`.slim` views, `app/components` (ViewComponent),
   JS/TS, Stimulus controllers, `*.css`/Tailwind, `app/javascript`, asset config.
 - **When present, pull in:** the **ui.sh** skills + **frontend-design** (look-and-feel, intentional vs
-  templated) + **`ie-experience-reviewer`** (interaction states loading/empty/error/disabled, keyboard/
+  templated) + **`fit-experience-reviewer`** (interaction states loading/empty/error/disabled, keyboard/
   focus/back-button, accessibility, information architecture). For a heavier pass hand the slice to **`dte-ux`**.
 - **Run the deterministic checkers** when the diff touches Stimulus/Turbo/Hotwire Native — the
   **hotwire-rails-toolkit** linters (`lint_stimulus`, `lint_turbo_streams`, `lint_morphing`,
@@ -76,7 +76,7 @@ single-line-decidable ones.
 Once analysis is done and **real work** will follow, you do not free-hand the work:
 1. **Every plan is created with `/ce-plan`** (compound-engineering). Never hand-roll a plan when ce-plan
    is available — it is the planning engine.
-2. **Every plan is validated before it is "done"** — run `/ie-validate-plan` (intent-engineering) and
+2. **Every plan is validated before it is "done"** — run `/fit-validate-plan` (expectation-fit) and
    any other validators in the library that apply (e.g. a cross-model `/ce-code-review` read of the
    plan, `layered-rails-planner` for architecture). **Fold the gaps back in; a plan with unresolved
    validation gaps is not ready to execute.**

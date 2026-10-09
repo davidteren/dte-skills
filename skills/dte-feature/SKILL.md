@@ -1,6 +1,6 @@
 ---
 name: dte-feature
-description: Full-stack new feature spanning front-end AND back-end — plan, implement, and verify across architecture/back-end AND UI/UX/front-end, making sure BOTH are solid. Composes dte-arc-plan (validated plan), dte-arc-work (gated build), dte-ux + the ui.sh family for the front-end, and dte-deep-reviewer + ie-experience-reviewer to verify both layers. Use when the user says "build this feature", "ship this idea end to end", "add <feature> with a UI", or describes something that needs both a model/controller/job AND a screen. Loops over a list of features. Not for a back-end-only change (use dte-arc-work), pure UI (use dte-ux), or just defining the what (use dte-spec).
+description: Full-stack new feature spanning front-end AND back-end — plan, implement, and verify across architecture/back-end AND UI/UX/front-end, making sure BOTH are solid. Composes dte-arc-plan (validated plan), dte-arc-work (gated build), dte-ux + the ui.sh family for the front-end, and dte-deep-reviewer + fit-experience-reviewer to verify both layers. Use when the user says "build this feature", "ship this idea end to end", "add <feature> with a UI", or describes something that needs both a model/controller/job AND a screen. Loops over a list of features. Not for a back-end-only change (use dte-arc-work), pure UI (use dte-ux), or just defining the what (use dte-spec).
 ---
 
 # dte-feature — full-stack feature: plan → build → verify, both layers solid
@@ -32,7 +32,7 @@ the feature ships UI) and confirm green on the current tree. It runs before ever
    back-end.
 5. **Elegance.** `/ce-simplify-code` + `ponytail` over the whole diff.
 6. **Verify BOTH.** `dte-deep-reviewer` on the diff (correctness/architecture) **and** **`dte-ux --review`**
-   / `ie-experience-reviewer` on the UI (states, a11y, look-and-feel). Feed 🔴/🟠 back into 3–4 (≤2 passes,
+   / `fit-experience-reviewer` on the UI (states, a11y, look-and-feel). Feed 🔴/🟠 back into 3–4 (≤2 passes,
    then surface what remains). `dte-test-auditor` on changed code.
 7. **Gate.** Run the gate. Green → commit + **report the phase** (or `--ship` → `/ce-commit-push-pr`).
    Red → revert the phase, log why, stop.
@@ -43,9 +43,9 @@ One branch per feature; serial by default. Or hand the list to **`dte-loop`** to
 autonomously. Report + pause per feature.
 
 ## Degrade gracefully
-- No `dte-ux`/ui.sh → build the UI with `frontend-design` + `ie-experience-reviewer` directly; note it.
+- No `dte-ux`/ui.sh → build the UI with `frontend-design` + `fit-experience-reviewer` directly; note it.
 - No `dte-arc-plan` → plan via `ce-plan` alone (validation weaker); no `dte-deep-reviewer` → verify with
-  `ce-code-review`/`ie-review`. State any missing layer-verifier — never ship a layer unverified silently.
+  `ce-code-review`/`fit-review`. State any missing layer-verifier — never ship a layer unverified silently.
 
 ## Guardrails
 - **Both layers or it's not done.** A feature with a working back-end and an untested/inaccessible UI (or

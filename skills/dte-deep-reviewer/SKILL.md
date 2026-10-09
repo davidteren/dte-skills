@@ -1,6 +1,6 @@
 ---
 name: dte-deep-reviewer
-description: Deep multi-lens review of a pull request, a branch diff, or a whole codebase, producing a written findings doc. Runs compound-engineering's cross-model code review, the intent-engineering lenses, majestic's Rails code-review orchestrator, and cubic review/scan, then adversarially cross-checks where they disagree. Use when the user says "review this PR / branch / diff", "deep review", "check this codebase", or hands over PR numbers/branch names. Loops over a list of PRs or branches. Not for architecture-level structure (use dte-arc-review) or for writing/fixing code (use dte-arc-work).
+description: Deep multi-lens review of a pull request, a branch diff, or a whole codebase, producing a written findings doc. Runs compound-engineering's cross-model code review, the expectation-fit lenses, majestic's Rails code-review orchestrator, and cubic review/scan, then adversarially cross-checks where they disagree. Use when the user says "review this PR / branch / diff", "deep review", "check this codebase", or hands over PR numbers/branch names. Loops over a list of PRs or branches. Not for architecture-level structure (use dte-arc-review) or for writing/fixing code (use dte-arc-work).
 ---
 
 # dte-deep-reviewer — PR / branch / codebase review → findings doc
@@ -19,11 +19,11 @@ Read `../../references/conventions.md` first. Output is a findings doc; it does 
 2. **Run the review lenses in parallel** (one sub-agent each; collect structured findings):
    - `/ce-code-review` — correctness, security, reliability, performance, testing personas **+ the
      cross-model second opinion** (the 3.15.0 win). Pass the plan/base when known.
-   - `/ie-review` — predictability, convention, simplicity, experience, architecture lenses.
+   - `/fit-review` — predictability, convention, simplicity, experience, architecture lenses.
    - majestic `review:rails-code-review` — Rails-specific orchestrated review.
    - cubic `/run-review` + `/scan` (if available) — team-learned patterns + security scan.
    - **Front-end lens (conditional).** If the diff touches FE files (`.erb`/`.haml`/`.slim`, ViewComponent,
-     JS/TS, Stimulus, CSS/Tailwind — see conventions "Front-end lens"), add **`ie-experience-reviewer`** +
+     JS/TS, Stimulus, CSS/Tailwind — see conventions "Front-end lens"), add **`fit-experience-reviewer`** +
      **frontend-design**/ui.sh (interaction states, a11y, keyboard/focus, look-and-feel). No FE files → say so, skip.
 3. **Adversarial cross-check.** Compare the lenses: where two or more agree → **confirmed**; where they
    disagree on severity or existence → **disputed** (surface both, don't merge or average).

@@ -12,7 +12,7 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 | Short name | Plugin / source | Provides |
 |---|---|---|
 | compound-engineering | [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) | `/ce-plan`, `/ce-work`, `/ce-code-review` (cross-model), `/ce-simplify-code`, `/ce-debug`, `/ce-sessions` |
-| intent-engineering | [davidteren/intent-engineering](https://github.com/davidteren/intent-engineering) | `/ie-validate-plan`, `/ie-review`, `/ie-audit`, `/ie-plan-assist`, `ie-*-reviewer` agents |
+| expectation-fit | [davidteren/intent-engineering](https://github.com/davidteren/intent-engineering) | `/fit-validate-plan`, `/fit-review`, `/fit-audit`, `/fit-plan-assist`, `fit-*-reviewer` agents |
 | layered-rails | [palkan/skills](https://github.com/palkan/skills) | `/layered-rails`, `analyze-callbacks/gods/services`, `layered-rails-planner/reviewer` |
 | majestic-rails | majestic-marketplace | `pragmatic-rails-reviewer`, `data-integrity-reviewer`, `review:rails-code-review`, `minitest-coder`, … |
 | rails-testing | visuality `rails-testing-v8` | idiomatic Rails 8 + Minitest + fixtures guidance |
@@ -29,15 +29,15 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 ### `/dte-arc-auditor` — app audit → migration roadmap
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| compound-engineering (`ce-plan`), intent-engineering (`ie-validate-plan`), layered-rails | majestic-rails, ponytail | Augment, cubic, MemPalace |
-Composes `dte-arc-review` + `dte-arc-plan` internally. Without ce-plan/ie-validate-plan it cannot produce
+| compound-engineering (`ce-plan`), expectation-fit (`fit-validate-plan`), layered-rails | majestic-rails, ponytail | Augment, cubic, MemPalace |
+Composes `dte-arc-review` + `dte-arc-plan` internally. Without ce-plan/fit-validate-plan it cannot produce
 a *validated* roadmap — its whole point.
 
 ### `/dte-arc-review` — architectural findings
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| layered-rails **or** intent-engineering (`ie-audit`) | majestic-rails, ponytail | Augment, cubic, **layer-boundary-lint** (deterministic layer-violation pre-pass) |
-Needs at least one architecture lens. With both layered-rails and ie-audit it cross-checks. When
+| layered-rails **or** expectation-fit (`fit-audit`) | majestic-rails, ponytail | Augment, cubic, **layer-boundary-lint** (deterministic layer-violation pre-pass) |
+Needs at least one architecture lens. With both layered-rails and fit-audit it cross-checks. When
 **layer-boundary-lint** is present, run it FIRST as a no-LLM grep gate (Current-in-models, request/params
 in the domain incl. interactors, raw queries in controllers/views, I/O in `after_*` callbacks) → `file:line`
 facts that ground the lenses. Published in **dte-rails-toolkit** (`claude plugin install
@@ -46,7 +46,7 @@ dte-rails-toolkit@dte-rails-toolkit-marketplace`); skipped-with-a-note when abse
 ### `/dte-deep-reviewer` — PR / branch / diff review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| compound-engineering (`ce-code-review`) **or** intent-engineering (`ie-review`) | majestic-rails (`review:rails-code-review`) | cubic (`run-review`/`scan`), Augment, **hotwire-rails-toolkit** (Stimulus/Turbo/bridge linters when the diff has FE/native files) |
+| compound-engineering (`ce-code-review`) **or** expectation-fit (`fit-review`) | majestic-rails (`review:rails-code-review`) | cubic (`run-review`/`scan`), Augment, **hotwire-rails-toolkit** (Stimulus/Turbo/bridge linters when the diff has FE/native files) |
 Cross-model second opinion comes from `ce-code-review` (compound-engineering ≥ 3.14). On a diff touching
 Stimulus/Turbo/Hotwire Native, run the **hotwire-rails-toolkit** checkers first (per the Front-end lens in
 `conventions.md`) — deterministic findings that ground the LLM review.
@@ -66,8 +66,8 @@ Coverage + quality run without mutation; the "does a test catch a bug" signal ne
 ### `/dte-arc-plan` — findings/spec/bug → validated plan(s)
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| compound-engineering (`ce-plan`), intent-engineering (`ie-validate-plan`) | intent-engineering (`ie-plan-assist`), layered-rails (`layered-rails-planner`) | — |
-Hard requirement by design: plans are built with `ce-plan` and validated with `ie-validate-plan`.
+| compound-engineering (`ce-plan`), expectation-fit (`fit-validate-plan`) | expectation-fit (`fit-plan-assist`), layered-rails (`layered-rails-planner`) | — |
+Hard requirement by design: plans are built with `ce-plan` and validated with `fit-validate-plan`.
 
 ### `/dte-arc-work` — build, gated and looped
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
@@ -92,14 +92,14 @@ the worklist is built by hand (plans unvalidated); without `/loop` only the dire
 ### `/dte-spec` — idea → validated spec/PRD
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| intent-engineering (`ie-validate-plan`) | compound-engineering (`ce-brainstorm`, `ce-ideate`) | Augment/cubic (existing-feature context) |
-Validation is the hard requirement — a spec isn't done until `ie-validate-plan` gaps are resolved.
+| expectation-fit (`fit-validate-plan`) | compound-engineering (`ce-brainstorm`, `ce-ideate`) | Augment/cubic (existing-feature context) |
+Validation is the hard requirement — a spec isn't done until `fit-validate-plan` gaps are resolved.
 
 ### `/dte-ux` — review & produce front-end (UI/UX)
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| the **ui.sh** family (`ui`, `ui-design`, `ui-componentize`, `ui-make-responsive`, `ui-add-dark-mode`, `ui-markup-from-image`) **or** `frontend-design` + `ie-experience-reviewer` | both of the above together | chrome-devtools (`lighthouse_audit`, snapshots), Augment, **hotwire-rails-toolkit** (`lint_stimulus` + `stimulus-patterns`/`turbo-*` guidance for Stimulus/Turbo work) |
-Review runs on frontend-design + ie-experience-reviewer; building needs the ui.sh skills. No browser → a11y
+| the **ui.sh** family (`ui`, `ui-design`, `ui-componentize`, `ui-make-responsive`, `ui-add-dark-mode`, `ui-markup-from-image`) **or** `frontend-design` + `fit-experience-reviewer` | both of the above together | chrome-devtools (`lighthouse_audit`, snapshots), Augment, **hotwire-rails-toolkit** (`lint_stimulus` + `stimulus-patterns`/`turbo-*` guidance for Stimulus/Turbo work) |
+Review runs on frontend-design + fit-experience-reviewer; building needs the ui.sh skills. No browser → a11y
 is heuristic, not measured.
 
 ### `/dte-feature` — full-stack feature (both layers)
@@ -117,7 +117,7 @@ Measures first. No AppSignal → EXPLAIN/logs/benchmarks; no chrome-devtools →
 ### `/dte-security-sweep` — security posture / PR review
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| the `security-audit` **or** `security-review` skill | **Brakeman** + **bundler-audit**, majestic `privacy-reviewer`/`data-integrity-reviewer`, `ie-predictability-reviewer` | Augment (source→sink tracing), **hotwire-rails-toolkit** (`audit_token_auth` enumeration/plaintext-token/opt-in-auth checks; `lint_turbo_streams` broadcast-eavesdropping check) |
+| the `security-audit` **or** `security-review` skill | **Brakeman** + **bundler-audit**, majestic `privacy-reviewer`/`data-integrity-reviewer`, `fit-predictability-reviewer` | Augment (source→sink tracing), **hotwire-rails-toolkit** (`audit_token_auth` enumeration/plaintext-token/opt-in-auth checks; `lint_turbo_streams` broadcast-eavesdropping check) |
 Scanners give the runnable signal; absent → manual sink-tracing, flagged "scanners not run". On a Hotwire app,
 the hotwire-rails-toolkit auth + stream linters add two encoded vuln classes (user enumeration, stream
 eavesdropping) the generic scanners miss — `audit_token_auth` assumes a DB-backed token design, so on Devise/
@@ -147,7 +147,7 @@ No `gh` → writes a markdown backlog index, notes tickets weren't filed. Honors
 ### `/dte-pwa` — installable / offline Rails app
 | Required 🟢 | Recommended 🟡 | Optional ⚪ |
 |---|---|---|
-| **Rails 8** (native PWA scaffolding) | the ui.sh family + frontend-design (install/offline UI), ie-experience-reviewer | chrome-devtools (`lighthouse_audit`), Augment |
+| **Rails 8** (native PWA scaffolding) | the ui.sh family + frontend-design (install/offline UI), fit-experience-reviewer | chrome-devtools (`lighthouse_audit`), Augment |
 Pre-Rails-8 → manifest + SW added by hand from the Rails 8 template. No browser → manual PWA checklist, score unmeasured.
 
 ### `/dte-skill-audit` — audit the dte-* suite
@@ -158,7 +158,7 @@ Self-contained + read-only — reads the skills, AGENTS.md, and DEPENDENCIES.md;
 
 ## Minimum vs full
 
-- **Minimum useful set:** compound-engineering + intent-engineering (+ layered-rails for the Rails
+- **Minimum useful set:** compound-engineering + expectation-fit (+ layered-rails for the Rails
   architecture skills). That unlocks plan/validate/work/review.
 - **Full Rails set:** add majestic-rails, rails-testing, ponytail, and a mutation tester (mutant or mutineer).
 - **Best-in-class:** also Augment (context), cubic (team patterns), MemPalace (history).

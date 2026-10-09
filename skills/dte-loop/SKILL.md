@@ -31,7 +31,7 @@ races), **gate before each commit**, **report after each item**.
 ### 2. Build the worklist doc (the thing /loop iterates)
 This is the reference the loop reads each pass. **Don't reinvent it where one already exists:**
 - **plan-impl** → if there's no INDEX yet, call **`dte-arc-plan`** to decompose + validate the batch into
-  `docs/plans/INDEX-<topic>.md` (each plan ce-plan-built + ie-validate-plan-validated). Reuse it as the worklist.
+  `docs/plans/INDEX-<topic>.md` (each plan ce-plan-built + fit-validate-plan-validated). Reuse it as the worklist.
 - **review-merge / task / bug** → write `docs/loops/INDEX-<topic>.md` in the worklist shape below.
 
 ```

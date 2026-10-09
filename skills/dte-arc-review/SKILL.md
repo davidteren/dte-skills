@@ -1,6 +1,6 @@
 ---
 name: dte-arc-review
-description: Architectural review of a Rails app, a subsystem, or a vertical slice, producing a written findings doc. Composes Augment context retrieval, layered-rails analyzers, intent-engineering audit, majestic Rails reviewers, and a ponytail over-engineering pass into one severity-ranked report. Use when the user asks to "review the architecture", "do an arc review", "assess the structure/design", "find architectural issues / god objects / fat models / layering problems", or to review a slice/subsystem. Loops over a list of slices when given several. Not for line-by-line PR/diff review (use dte-deep-reviewer) or for planning fixes (use dte-arc-plan).
+description: Architectural review of a Rails app, a subsystem, or a vertical slice, producing a written findings doc. Composes Augment context retrieval, layered-rails analyzers, expectation-fit audit, majestic Rails reviewers, and a ponytail over-engineering pass into one severity-ranked report. Use when the user asks to "review the architecture", "do an arc review", "assess the structure/design", "find architectural issues / god objects / fat models / layering problems", or to review a slice/subsystem. Loops over a list of slices when given several. Not for line-by-line PR/diff review (use dte-deep-reviewer) or for planning fixes (use dte-arc-plan).
 ---
 
 # dte-arc-review — architectural review → findings doc
@@ -31,13 +31,13 @@ not fix anything (hand off to `dte-arc-plan` / `dte-arc-work`).
 2. **Run the lenses in parallel** (one sub-agent each; collect structured findings):
    - `/layered-rails` → `analyze-callbacks`, `analyze-gods`, `analyze-services` + `layered-rails-reviewer`
      (fat models/controllers, god objects, callback-heavy operations, layer leaks).
-   - `/ie-audit` scoped to the target → architecture, convention, simplicity, predictability lenses.
+   - `/fit-audit` scoped to the target → architecture, convention, simplicity, predictability lenses.
    - majestic `pragmatic-rails-reviewer` + `data-integrity-reviewer` for Rails-specific structural smells.
    - **Front-end lens (conditional).** If the slice includes FE files (views, ViewComponent, JS/Stimulus,
-     CSS/Tailwind — see conventions "Front-end lens"), add **`ie-experience-reviewer`** + **frontend-design**/
+     CSS/Tailwind — see conventions "Front-end lens"), add **`fit-experience-reviewer`** + **frontend-design**/
      ui.sh (component structure, interaction states, a11y, look-and-feel), or hand the slice to **`dte-ux`**.
      No FE files → state "no front-end changes detected", skip.
-3. **Ponytail pass.** Run `ponytail`/`ie-simplicity-reviewer` over the findings: which "problems" are
+3. **Ponytail pass.** Run `ponytail`/`fit-simplicity-reviewer` over the findings: which "problems" are
    actually fine, and which proposed structure is over-engineering? Mark over-builds explicitly.
 4. **Synthesize.** Dedupe across lenses, severity-rank (🔴/🟠/🟡), and apply owned-convention:
    for these projects recommend **interactors, not service objects**; flag any layered-rails `services`

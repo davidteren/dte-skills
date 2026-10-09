@@ -14,16 +14,16 @@ says what's missing, whether an existing skill/tool already covers it, and the d
 **Gap:** no skill for making a Rails app installable/offline-capable (manifest, service worker, install
 prompt, offline cache, push). **What exists:** **Rails 8 ships native PWA** — `app/views/pwa/manifest.json.erb`
 + `service-worker.js`, routes commented in `config/routes.rb`. The **ui.sh** family + **frontend-design**
-cover the UI; **ie-experience-reviewer** the UX. No skill stitches these into a PWA recipe.
+cover the UI; **fit-experience-reviewer** the UX. No skill stitches these into a PWA recipe.
 **Decision:** **built as `dte-pwa` in v1.4.0** — composes Rails 8 native PWA (manifest + service worker,
-not hand-rolled), the ui.sh skills (install UI / offline states), frontend-design, ie-experience-reviewer,
+not hand-rolled), the ui.sh skills (install UI / offline states), frontend-design, fit-experience-reviewer,
 and a Lighthouse PWA audit. **Open follow-up:** authored + validated only — not yet run against a real
 Rails 8 app (none in this repo); dogfood the live Lighthouse pass later. See STATUS "Open follow-ups".
 
 ### Front-end lens in reviews — ✅ done v1.4.0
 **Decision:** rule added **once** to `references/conventions.md` ("Front-end lens"); a conditional FE-detect
 step added to `dte-deep-reviewer` + `dte-arc-review` that pulls **ui.sh** + **frontend-design** +
-**ie-experience-reviewer** when the diff touches erb/haml/slim, JS/TS, Stimulus, ViewComponent, CSS/Tailwind.
+**fit-experience-reviewer** when the diff touches erb/haml/slim, JS/TS, Stimulus, ViewComponent, CSS/Tailwind.
 **Open follow-up:** confirm it actually triggers on a real FE diff in practice.
 
 ### skill-audit — ✅ built v1.4.0 (`dte-skill-audit`), first run pending
@@ -51,7 +51,7 @@ pattern). Override by saying so.
 | Loop-driver skill name | **`dte-loop`** (matches the built-in `/loop` it drives) | rename in frontmatter + manifests |
 | Build order | **`dte-loop` first**, then ux, feature, perf, spec, security-sweep, debug, migrate | reorder |
 | PWA now or later | **Log here, build `dte-pwa` later** | say "build dte-pwa now" |
-| `dte-spec` meaning | **idea → validated spec/PRD** (ce-brainstorm + ie-validate-plan); feeds dte-arc-plan | redefine as test-spec authoring |
+| `dte-spec` meaning | **idea → validated spec/PRD** (ce-brainstorm + fit-validate-plan); feeds dte-arc-plan | redefine as test-spec authoring |
 | `dte-migrate` meaning | **Rails/gem/data upgrades** (gemfile-upgrade, database-admin, ce-plan/work) | redefine as arch-migration executor |
 | Merge in autonomous loops | **manual by default; auto-merge opt-in only** (outward-facing) | set `merge-policy: auto-if(...)` per loop |
 
