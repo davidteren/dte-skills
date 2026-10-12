@@ -94,7 +94,7 @@ functionality install these too (see [DEPENDENCIES.md](DEPENDENCIES.md) for the 
 | Tier | Plugin | Gives |
 |---|---|---|
 | **Required** | [`compound-engineering`](https://github.com/EveryInc/compound-engineering-plugin) | `ce-plan`, `ce-work`, `ce-code-review` (cross-model) |
-| **Required** | [`expectation-fit`](https://github.com/davidteren/intent-engineering) | `fit-validate-plan`, `fit-review`, `fit-audit` |
+| **Required** | [`expectation-fit`](https://github.com/davidteren/intent-engineering) (formerly intent-engineering; needs 0.9.0 or later, which has no `/ie-*` shim; install with `/plugin install expectation-fit@expectation-fit-marketplace`) | `fit-validate-plan`, `fit-review`, `fit-audit` |
 | **Required (Rails)** | [`layered-rails`](https://github.com/palkan/skills) | architecture analysis (callbacks / gods / services) |
 | **Recommended** | `majestic-rails`, `rails-testing-v8`, `ponytail` | Rails reviewers/coders · Minitest depth · the elegance pass |
 | **Optional** | Augment, cubic, MemPalace, a mutation tester | richer context · team patterns · history · mutation signal |

@@ -1,12 +1,12 @@
 # STATUS — dte-skills
 
-_Living tracker for the plugin. Last updated: 2026-06-28._
+_Living tracker for the plugin. Last updated: 2026-10-12._
 
 **What this is:** a Claude Code plugin of `dte-*` orchestration skills (review → plan → work → audit)
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.6**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.5.0** (needs expectation-fit 0.9.0+, formerly intent-engineering), 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
