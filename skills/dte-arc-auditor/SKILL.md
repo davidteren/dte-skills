@@ -37,12 +37,12 @@ separate pass, **surfaces the big forks up front**, and **keeps the honest "don'
 4. **Build the migration roadmap (via `dte-arc-plan`, validated).** Decompose into **phased, independently-
    shippable steps**, each: goal, concrete moves, a `stop_here_if` gate, risk. Establish the project's
    **runnable gate** (tests + boot/`zeitwerk:check` + any pack/lint validate) — the real safety net,
-   especially if deploys aren't test-gated. Each phase/plan is **validated with `/ie-validate-plan`**
+   especially if deploys aren't test-gated. Each phase/plan is **validated with `/fit-validate-plan`**
    (separate pass; gaps resolved). Emit a **`PROGRESS.md` worklist** (one checkbox per phase + the gate
    command) that `dte-arc-work` consumes.
 
 5. **Risks & decisions — a separate adversarial pass.** Run an independent critic over the roadmap
-   (different lens, ideally cross-model `/ce-code-review`), plus a **ponytail / `ie-simplicity-reviewer`
+   (different lens, ideally cross-model `/ce-code-review`), plus a **ponytail / `fit-simplicity-reviewer`
    counterweight**: is any of this over-engineering for the app's actual stage? Record the honest "healthy
    codebase, don't over-build" verdict if that's the truth. Capture the open decisions and the
    must-fix-before-start list.
@@ -57,6 +57,6 @@ separate pass, **surfaces the big forks up front**, and **keeps the honest "don'
 
 ## Done when
 There's a validated doc set whose `PROGRESS.md` worklist `dte-arc-work` can execute phase-by-phase: a
-target architecture with a real DAG + leave-alone list, a phased gated plan with each phase ie-validated,
+target architecture with a real DAG + leave-alone list, a phased gated plan with each phase validated with fit-validate-plan,
 the load-bearing claims **verified not assumed**, the big forks already decided with the user, and an
 honest over-engineering check on the record.

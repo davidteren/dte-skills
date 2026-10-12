@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>dte-skills — orchestration skills for Rails engineering</title>
-<meta name="description" content="A Claude Code plugin that composes intent-engineering, compound-engineering, layered-rails and more into disciplined review → plan → work → audit flows.">
+<meta name="description" content="A Claude Code plugin that composes expectation-fit, compound-engineering, layered-rails and more into disciplined review → plan → work → audit flows.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="theme-color" content="#0a0a0c">
 <!-- Open Graph / Twitter -->
@@ -216,7 +216,7 @@
   <header>
     <div class="badge anim" style="--i:0">Claude Code plugin</div>
     <h1 class="anim" style="--i:1">dte-skills</h1>
-    <p class="tag anim" style="--i:2">Orchestration skills that <b>compose the AI-engineering tools you already have</b> — intent-engineering, compound-engineering, layered-rails — into disciplined <b>review → plan → work → audit</b> flows for Rails.</p>
+    <p class="tag anim" style="--i:2">Orchestration skills that <b>compose the AI-engineering tools you already have</b> — expectation-fit, compound-engineering, layered-rails — into disciplined <b>review → plan → work → audit</b> flows for Rails.</p>
     <div class="cta anim" style="--i:3">
       <a class="btn btn-primary" href="https://github.com/davidteren/dte-skills">★ View on GitHub</a>
       <a class="btn btn-ghost" href="#catalog">Browse the skills ↓</a>
@@ -280,8 +280,8 @@
     <h2>How it works</h2>
     <div class="lead">The discipline a one-off prompt forgets — made first-class.</div>
     <div class="princ">
-      <div class="pr"><div class="n">01</div><h3>Compose, don't reinvent</h3><p>Every skill invokes the real tools — ce-plan, ie-validate-plan, layered-rails — not a hand-rolled imitation.</p></div>
-      <div class="pr"><div class="n">02</div><h3>Plan, then validate</h3><p>Real work is planned with compound-engineering and validated with intent-engineering before a line is written.</p></div>
+      <div class="pr"><div class="n">01</div><h3>Compose, don't reinvent</h3><p>Every skill invokes the real tools — ce-plan, fit-validate-plan, layered-rails — not a hand-rolled imitation.</p></div>
+      <div class="pr"><div class="n">02</div><h3>Plan, then validate</h3><p>Real work is planned with compound-engineering and validated with expectation-fit before a line is written.</p></div>
       <div class="pr"><div class="n">03</div><h3>Verify, don't trust</h3><p>A plan's load-bearing claims are checked against the code, not assumed — the misclassification you catch is the file you'd have moved wrong.</p></div>
       <div class="pr"><div class="n">04</div><h3>Gate + report every step</h3><p>A runnable gate before every commit; a report and a pause after every phase. No dark loops, no silent failures.</p></div>
       <div class="pr"><div class="n">05</div><h3>Loop at scale</h3><p>A massive task decomposes into many small validated plans, completed one by one.</p></div>
@@ -314,19 +314,19 @@ const SKILLS = [
 
   { id:"dte-arc-review", cat:"review", writes:false,
     blurb:"Architectural review of an app, subsystem, or slice → severity-ranked findings.",
-    does:"Maps the structure with Augment, then runs the layered-rails analyzers, the intent-engineering audit, majestic Rails reviewers and a ponytail over-engineering pass into one severity-ranked findings doc. Diagnostic only — it never fixes; it hands off to plan/work.",
+    does:"Maps the structure with Augment, then runs the layered-rails analyzers, the expectation-fit audit, majestic Rails reviewers and a ponytail over-engineering pass into one severity-ranked findings doc. Diagnostic only — it never fixes; it hands off to plan/work.",
     output:"Findings doc (severity-ranked)",
     usage:"/dte-arc-review <path/to/slice-or-subsystem>",
     triggers:["review the architecture / do an arc review","assess the structure or design","find god objects / fat models / layering problems","review a slice or subsystem"],
-    composes:["Augment","layered-rails","ie-audit","majestic reviewers","ponytail"] },
+    composes:["Augment","layered-rails","fit-audit","majestic reviewers","ponytail"] },
 
   { id:"dte-deep-reviewer", cat:"review", writes:false,
     blurb:"Deep multi-lens review of a PR, branch diff, or whole codebase.",
-    does:"Runs compound-engineering's cross-model code review, the intent-engineering lenses, majestic's Rails review orchestrator and cubic review/scan — then adversarially cross-checks where they disagree before synthesizing a severity-ranked findings doc with file:line and fixes.",
+    does:"Runs compound-engineering's cross-model code review, the expectation-fit lenses, majestic's Rails review orchestrator and cubic review/scan — then adversarially cross-checks where they disagree before synthesizing a severity-ranked findings doc with file:line and fixes.",
     output:"Findings doc (confirmed vs disputed)",
     usage:"/dte-deep-reviewer <PR# | branch-name | path>",
     triggers:["review this PR / branch / diff","deep review","check this codebase","hand over PR numbers or branch names"],
-    composes:["ce-code-review","ie-review","majestic rails-code-review","cubic run-review/scan"],
+    composes:["ce-code-review","fit-review","majestic rails-code-review","cubic run-review/scan"],
     verified:{ badge:"✓ live · caught 2 P1 bugs", note:"Front-end lens dogfooded on a real diff (miela_app@fc2fec7, 2026-06-28): the FE-file detector fired the experience lens autonomously and caught 2 P1 accessibility bugs the original ARIA commit missed — Space-key page-scroll and a suppressed keyboard focus ring — filed as miela_app #606 / #607." } },
 
   { id:"dte-test-auditor", cat:"review", writes:false,
@@ -351,7 +351,7 @@ const SKILLS = [
     output:"Findings doc (traced, must-fix gated)",
     usage:"/dte-security-sweep <PR# | path | app>",
     triggers:["security review / security sweep","is this safe / check for vulnerabilities","audit auth / authorization","scan for secrets or PII"],
-    composes:["security-audit","security-review","Brakeman","bundler-audit","privacy-reviewer","ie-predictability-reviewer"] },
+    composes:["security-audit","security-review","Brakeman","bundler-audit","privacy-reviewer","fit-predictability-reviewer"] },
 
   { id:"dte-skill-audit", cat:"review", writes:false,
     blurb:"Audit the dte-* suite itself against its own quality bar.",
@@ -364,19 +364,19 @@ const SKILLS = [
 
   { id:"dte-arc-plan", cat:"plan", writes:false,
     blurb:"Findings / spec / bug → concrete, validated implementation plan(s).",
-    does:"Turns architectural findings, a spec, or a bug into plans built with ce-plan and validated with ie-validate-plan — never hand-rolled. For massive work it decomposes into many small, independently-shippable validated plans and emits a plan INDEX that dte-arc-work then completes.",
+    does:"Turns architectural findings, a spec, or a bug into plans built with ce-plan and validated with fit-validate-plan — never hand-rolled. For massive work it decomposes into many small, independently-shippable validated plans and emits a plan INDEX that dte-arc-work then completes.",
     output:"Validated plans in docs/plans/ (+ INDEX)",
     usage:"/dte-arc-plan <findings-doc | spec | \"describe the bug/refactor\">",
     triggers:["plan the fixes","make a plan from these findings","plan this bug / refactor / feature","break this big thing into plans"],
-    composes:["ce-plan","ie-validate-plan","ie-plan-assist","layered-rails-planner","ce-code-review"] },
+    composes:["ce-plan","fit-validate-plan","fit-plan-assist","layered-rails-planner","ce-code-review"] },
 
   { id:"dte-spec", cat:"plan", writes:false,
     blurb:"Fuzzy idea → a right-sized, validated spec / PRD (the WHAT).",
-    does:"Turns a one-line idea into a specification — problem, scope, non-goals, user stories, testable acceptance criteria, edge cases and UX states — explored with ce-brainstorm and validated as a separate pass with ie-validate-plan. Defines the what and why before any plan exists; validation gaps must be resolved before it's done.",
+    does:"Turns a one-line idea into a specification — problem, scope, non-goals, user stories, testable acceptance criteria, edge cases and UX states — explored with ce-brainstorm and validated as a separate pass with fit-validate-plan. Defines the what and why before any plan exists; validation gaps must be resolved before it's done.",
     output:"Validated spec/PRD in docs/specs/ (feeds dte-arc-plan)",
     usage:"/dte-spec \"<one-line idea of what you want to build>\"",
     triggers:["spec this out / write a PRD","define the requirements","what should this do / scope this feature","shape a one-line idea"],
-    composes:["ce-brainstorm","ce-ideate","ie-validate-plan","ie-plan-assist"] },
+    composes:["ce-brainstorm","ce-ideate","fit-validate-plan","fit-plan-assist"] },
 
   { id:"dte-pm", cat:"plan", writes:false,
     blurb:"Goal / spec → tracked, sequenced GitHub issues + a status index.",
@@ -400,7 +400,7 @@ const SKILLS = [
     output:"Shipped full-stack feature (both layers verified)",
     usage:"/dte-feature \"<feature, incl. its screen/UI>\"",
     triggers:["build this feature","ship this idea end to end","add <feature> with a UI","something needing a model AND a screen"],
-    composes:["dte-arc-plan","dte-arc-work","dte-ux","ui.sh family","dte-deep-reviewer","ie-experience-reviewer"] },
+    composes:["dte-arc-plan","dte-arc-work","dte-ux","ui.sh family","dte-deep-reviewer","fit-experience-reviewer"] },
 
   { id:"dte-debug", cat:"build", writes:true,
     blurb:"Track a bug to its root cause — fix it once, where all callers route.",
@@ -424,7 +424,7 @@ const SKILLS = [
     output:"Installable app — manifest + SW + Application-panel installability check",
     usage:"/dte-pwa",
     triggers:["make this a PWA / installable","add a web app manifest or service worker","work offline / add to home screen","installable web app"],
-    composes:["Rails 8 native PWA","ui.sh family","frontend-design","ie-experience-reviewer","chrome-devtools (Application panel)"],
+    composes:["Rails 8 native PWA","ui.sh family","frontend-design","fit-experience-reviewer","chrome-devtools (Application panel)"],
     verified:{ badge:"✓ verified live · LH 100", note:"Dogfooded on a real Rails 8 app (miela_app), 2026-06-28: Chrome beforeinstallprompt FIRED (the authoritative installable verdict), service worker activated + controlling, manifest valid (standalone, maskable icon). Lighthouse mobile = 100 across accessibility / best-practices / SEO. Installable without offline caching — and the skill's honor-existing-SW guard correctly produced \"zero changes\"." } },
 
   { id:"dte-ux", cat:"design", writes:true,
@@ -433,7 +433,7 @@ const SKILLS = [
     output:"Findings doc and/or applied UI",
     usage:"/dte-ux --build <screen | component | mockup-path>",
     triggers:["review the UI/UX","design this screen / build this component","improve the look-and-feel / make it responsive","turn this mockup or screenshot into UI"],
-    composes:["ui.sh family","ui-markup-from-image","ui-make-responsive","ui-add-dark-mode","frontend-design","ie-experience-reviewer"] },
+    composes:["ui.sh family","ui-markup-from-image","ui-make-responsive","ui-add-dark-mode","frontend-design","fit-experience-reviewer"] },
 
   { id:"dte-loop", cat:"orchestrate", writes:true,
     blurb:"Set up an autonomous, gated loop over a batch of work.",

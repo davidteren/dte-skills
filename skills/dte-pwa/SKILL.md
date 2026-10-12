@@ -1,6 +1,6 @@
 ---
 name: dte-pwa
-description: Make a Rails app installable and offline-capable — web app manifest, service worker, install prompt, offline/cache states, and (optionally) push — built on Rails 8's native PWA support, not a hand-rolled service worker. Composes Rails 8 native PWA (app/views/pwa/manifest.json.erb + service-worker.js + the routes), the ui.sh family + frontend-design for install/offline UI, ie-experience-reviewer for the offline UX, and a Chrome DevTools Application-panel installability check. Use when the user says "make this a PWA", "make it installable", "add a web app manifest / service worker", "work offline", "add to home screen", or "installable web app". Loops over a list of apps/surfaces. Not for general front-end work (use dte-ux) or native mobile (Hotwire Native is a different toolkit).
+description: Make a Rails app installable and offline-capable — web app manifest, service worker, install prompt, offline/cache states, and (optionally) push — built on Rails 8's native PWA support, not a hand-rolled service worker. Composes Rails 8 native PWA (app/views/pwa/manifest.json.erb + service-worker.js + the routes), the ui.sh family + frontend-design for install/offline UI, fit-experience-reviewer for the offline UX, and a Chrome DevTools Application-panel installability check. Use when the user says "make this a PWA", "make it installable", "add a web app manifest / service worker", "work offline", "add to home screen", or "installable web app". Loops over a list of apps/surfaces. Not for general front-end work (use dte-ux) or native mobile (Hotwire Native is a different toolkit).
 ---
 
 # dte-pwa — installable, offline-capable Rails app (on Rails 8 native PWA)
@@ -46,7 +46,7 @@ correctly and wires the install/offline UX.
    (manifest/console-error signals live there now). If no browser (e.g. chrome-devtools busy/headless), fall
    back to the manual HTTP checklist — manifest route returns valid JSON, SW route returns the worker, icons
    200, layout links the manifest + registers the SW — and flag the verdict **unmeasured-by-browser**. Run
-   **`ie-experience-reviewer`** over the install + offline UX.
+   **`fit-experience-reviewer`** over the install + offline UX.
 6. **Gate.** App boots, manifest route returns valid JSON, SW registers without console errors, icons resolve,
    and the Application-panel installability verdict is green (or the manual checklist passes with the
    browser-unmeasured note).

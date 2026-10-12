@@ -1,12 +1,12 @@
 # STATUS — dte-skills
 
-_Living tracker for the plugin. Last updated: 2026-06-28._
+_Living tracker for the plugin. Last updated: 2026-10-12._
 
 **What this is:** a Claude Code plugin of `dte-*` orchestration skills (review → plan → work → audit)
 that compose the existing AI-engineering toolchain. **Public:** github.com/davidteren/dte-skills ·
 site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.md).
 
-**Current:** **v1.4.6**, 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
+**Current:** **v1.5.0** (needs expectation-fit 0.9.0+, formerly intent-engineering), 18 skills, published. Install: `claude plugin marketplace add davidteren/dte-skills`
 → `claude plugin install dte-skills@dte-skills-marketplace`. Gaps + decisions log: [GAPS.md](GAPS.md).
 
 ---
@@ -19,12 +19,12 @@ site davidteren.github.io/dte-skills. **Maintainer guide:** [AGENTS.md](AGENTS.m
 | `dte-arc-review` | review a slice / structure → architectural findings |
 | `dte-deep-reviewer` | review a PR / branch / diff → cross-model code findings |
 | `dte-test-auditor` | judge a test suite — coverage + quality + mutation |
-| `dte-arc-plan` | findings/spec/bug → ce-plan-built, ie-validate-plan-validated plans (decomposes big → many) |
+| `dte-arc-plan` | findings/spec/bug → ce-plan-built, fit-validate-plan-validated plans (decomposes big → many) |
 | `dte-arc-work` | do the work — gated, looped, report+pause per phase |
 | `dte-tooling-scan` | mine history → overlap-aware adoption shortlist |
 | `dte-loop` | batch → worklist doc + autonomous gated loop command (questions front-loaded) |
-| `dte-spec` | fuzzy idea → validated spec/PRD (ce-brainstorm + ie-validate-plan) → feeds dte-arc-plan |
-| `dte-ux` | review **and** produce front-end (ui.sh + frontend-design + ie-experience-reviewer) |
+| `dte-spec` | fuzzy idea → validated spec/PRD (ce-brainstorm + fit-validate-plan) → feeds dte-arc-plan |
+| `dte-ux` | review **and** produce front-end (ui.sh + frontend-design + fit-experience-reviewer) |
 | `dte-feature` | full-stack feature — plan/build/verify **both** back-end and front-end |
 | `dte-perf` | measured perf review → ranked evidence-backed fixes (AppSignal, EXPLAIN, Lighthouse) |
 | `dte-security-sweep` | security posture / PR review — traced vulns + Brakeman/bundler-audit |
@@ -106,7 +106,7 @@ _(Shipped in v1.4.0: `dte-pm`, `dte-pwa`, `dte-skill-audit`, and the front-end-l
 
 - **Naming:** plugin `dte-skills`; skills keep the `dte-` prefix; `dte-arc-*` for the review→plan→work arc.
 - **License:** MIT. **Public** repo + GitHub Pages.
-- **Mandatory way of working:** real work → `ce-plan` then `ie-validate-plan` (+ validators), gaps resolved,
+- **Mandatory way of working:** real work → `ce-plan` then `fit-validate-plan` (+ validators), gaps resolved,
   before execution; big tasks decompose into many validated plans. (Hard-wired in `dte-arc-plan`/`-work`.)
 - **interactors-not-services** for these projects.
 - Skills are recipes that **compose** installed tools — see [DEPENDENCIES.md](DEPENDENCIES.md) for what

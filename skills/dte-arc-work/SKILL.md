@@ -26,7 +26,7 @@ deploys are not test-gated.
 2. **Review.** `--deep`: `dte-arc-review` on the affected slice. `--quick`: focused read + `/ce-debug` to
    the root cause (fix the cause, grep all callers first). _If the item already has a validated plan
    (INDEX/`docs/plans`), skip to step 4._
-3. **Plan.** `dte-arc-plan` → a **validated** plan (ce-plan + ie-validate-plan; gaps resolved).
+3. **Plan.** `dte-arc-plan` → a **validated** plan (ce-plan + fit-validate-plan; gaps resolved).
 4. **Work.** `/ce-work` the plan. Follow existing patterns; write/update tests as you go.
 5. **Elegant.** `/ce-simplify-code` + `ponytail` over the diff — the ladder, not just "less code".
 6. **Verify.** `dte-deep-reviewer` on the diff + `dte-test-auditor` on changed code. Feed 🔴/🟠 back into
