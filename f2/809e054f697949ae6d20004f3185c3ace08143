@@ -1,0 +1,21 @@
+DEPENDENCIES.md
+  s_139c48e2134bb7::t_1794ed072f0541 15
+README.md
+  s_139c48e2134bb7::t_757a7174e48e88 97
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f2809e054f697949ae6d20004f3185c3ace08143",
+  "prompts": {},
+  "sessions": {
+    "s_139c48e2134bb7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "089293b8-bf7f-4fca-9b58-2370b9ff2a96",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "davidteren <drteren@gmail.com>"
+    }
+  }
+}
