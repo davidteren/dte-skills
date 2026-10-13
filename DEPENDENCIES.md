@@ -12,7 +12,7 @@ better), **Optional** (used if present, gracefully skipped with a note if not).
 | Short name | Plugin / source | Provides |
 |---|---|---|
 | compound-engineering | [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) | `/ce-plan`, `/ce-work`, `/ce-code-review` (cross-model), `/ce-simplify-code`, `/ce-debug`, `/ce-sessions` |
-| expectation-fit | [davidteren/intent-engineering](https://github.com/davidteren/intent-engineering) (formerly intent-engineering; needs 0.9.0 or later, which has no `/ie-*` shim; install with `/plugin marketplace add davidteren/intent-engineering`, then `/plugin install expectation-fit@expectation-fit-marketplace`) | `/fit-validate-plan`, `/fit-review`, `/fit-audit`, `/fit-plan-assist`, `fit-*-reviewer` agents |
+| expectation-fit | [davidteren/expectation-fit](https://github.com/davidteren/expectation-fit) (formerly intent-engineering; needs 0.9.0 or later, which has no `/ie-*` shim; install with `/plugin marketplace add davidteren/expectation-fit`, then `/plugin install expectation-fit@expectation-fit-marketplace`) | `/fit-validate-plan`, `/fit-review`, `/fit-audit`, `/fit-plan-assist`, `fit-*-reviewer` agents |
 | layered-rails | [palkan/skills](https://github.com/palkan/skills) | `/layered-rails`, `analyze-callbacks/gods/services`, `layered-rails-planner/reviewer` |
 | majestic-rails | majestic-marketplace | `pragmatic-rails-reviewer`, `data-integrity-reviewer`, `review:rails-code-review`, `minitest-coder`, … |
 | rails-testing | visuality `rails-testing-v8` | idiomatic Rails 8 + Minitest + fixtures guidance |
